@@ -1,0 +1,33 @@
+{"persons" : [
+    {
+        "id" : "-1",
+        "name" : "Artem",
+        "coordinatesX" : "110",
+        "coordinatesY" : "12",
+        "date" : "12:23:46 24.03.2022",
+        "height" : "156.0",
+        "eyeColor" : "GREEN",
+        "hairColor" : "BLACK",
+        "nationality" : "SPAIN",
+        "locationX" : "10",
+        "locationY" : "20.0",
+        "locationZ" : "30",
+        "locationName" : "Barcelona"
+    },
+    {
+        "id" : "20",
+        "name" : "Ivan",
+        "coordinatesX" : "10",
+        "coordinatesY" : "20",
+        "date" : "12:23:46 24.03.2022",
+        "height" : "161.0",
+        "eyeColor" : "fd",
+        "hairColor" : "ORANGE",
+        "nationality" : "USA",
+        "locationX" : "100",
+        "locationY" : "200.0",
+        "locationZ" : "300",
+        "locationName" : "Washington"
+    }
+]
+}
