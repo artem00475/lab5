@@ -60,20 +60,20 @@ public class FileManager {
                     }
                     String nameP = (String) personsJSONObject.get(tags[1]);
                     if (((String) personsJSONObject.get(tags[2])).equals("")) {
-                        throw new CoordinatesException("У элемента отсутствует координата Х");
+                        throw new CoordinatesException("У элемента отсутствует поле coordinatesX");
                     }
                     try {
                         coordinatesXP = Integer.parseInt((String) personsJSONObject.get(tags[2]));
                     } catch (NumberFormatException e) {
-                        throw new CoordinatesException("В поле координата Х нечисловое значение");
+                        throw new CoordinatesException("В поле coordinatesX нечисловое значение");
                     }
                     if (((String) personsJSONObject.get(tags[3])).equals("")) {
-                        throw new CoordinatesException("У элемента отсутствует координата Y");
+                        throw new CoordinatesException("У элемента отсутствует поле coordinatesY");
                     }
                     try {
                         coordinatesYP = Integer.parseInt((String) personsJSONObject.get(tags[3]));
                     } catch (NumberFormatException e) {
-                        throw new CoordinatesException("В поле координата Y нечисловое значение");
+                        throw new CoordinatesException("В поле coordinatesX нечисловое значение");
                     }
                     if (((String) personsJSONObject.get(tags[4])).equals("")) {
                         throw new DateException("У элемента отсутствует поле date");

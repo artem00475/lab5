@@ -26,10 +26,9 @@ public class CommandManager {
     }
 
     public void fileMode() {
-        System.out.print("Введите переменную окружения, откуда читать и куда сохранять коллекцию(exit - выход из ввода):");
+        System.out.print("Введите переменную окружения, для заполнения коллекции из файла и сохранения коллекции (exit - выход из ввода):");
         while (true) {
             try {
-                System.out.print("Введите переменную окружения, откуда читать и куда сохранять коллекцию(exit - выход из ввода):");
                 String scannedPath = scanner.nextLine();
                 if (scannedPath.equals("exit")) {
                     ifEmpty = true;
@@ -56,12 +55,12 @@ public class CommandManager {
                 System.out.print("Введите переменную окружения снова: ");
             }
         }
-
         consoleMode();
     }
 
     public void consoleMode(){
         ifConsole=true;
+        boolean found = false;
         while(true){
             System.out.print("Введите команду: ");
             String com = scanner.nextLine();
@@ -69,7 +68,8 @@ public class CommandManager {
             else {
                 for (Command command : commands){
                     if (com.equals(command.getName())) {
-                        if (com.equals("execute_script file_name")) {
+                        found = true;
+                        if (com.equals("execute_script")) {
                             command.execute(ifConsole);
                             scriptMode();
                         } else if (!command.hasArgement()) {
@@ -77,12 +77,9 @@ public class CommandManager {
                         } else {
                             command.execute(ifConsole);
                         }
-                    }else {
-                        System.out.println("Команда введениа неверно, или такой команды не существует");
                     }
                 }
-            }
-
+            }if (!found) {System.out.println("Команда введениа неверно, или такой команды не существует");}
         }
     }
 
@@ -101,7 +98,7 @@ public class CommandManager {
                 } else {
                     for (Command command : commands) {
                         if (com.equals(command.getName())) {
-                            if (com.equals("execute_script file_name")) {
+                            if (com.equals("execute_script")) {
                                 command.execute(ifConsole);
                                 scriptMode();
                             } else if (!command.hasArgement()) {

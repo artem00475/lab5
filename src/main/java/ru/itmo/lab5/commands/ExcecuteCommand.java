@@ -24,7 +24,7 @@ public class ExcecuteCommand implements Command {
 
     @Override
     public String getName() {
-        return "execute_script file_name";
+        return "execute_script";
     }
 
     @Override
@@ -35,14 +35,22 @@ public class ExcecuteCommand implements Command {
     @Override
     public void execute(Boolean argument) {
         if (argument){
-            System.out.print("Введите полное имя файла: ");
-            String path = scanner.nextLine();
-            File file = new File(path);
-            scriptManager.addFile(file);
+            try {
+                System.out.print("Введите полное имя файла: ");
+                String path = scanner.nextLine();
+                File file = new File(path);
+                scriptManager.addFile(file);
+            }catch (Exception e) {
+                System.out.println("Команда не выполнена");
+            }
         }else {
-            String path = deque.remove();
-            File file = new File(path);
-            scriptManager.addFile(file);
+            try {
+                String path = scanner.nextLine();
+                File file = new File(path);
+                scriptManager.addFile(file);
+            }catch (Exception e) {
+                System.out.println("Команда не выполнена");
+            }
         }
 
     }

@@ -2,8 +2,6 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
-import ru.itmo.lab5.exceptions.CommandException;
-import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 public class AddCommand implements Command {
@@ -36,12 +34,12 @@ public class AddCommand implements Command {
     public void execute(Boolean argument) {
         if (argument) {
                 collectionManager.addElement(consoleManager.getPersonFromConsole());
-                System.out.println("Объект успешно добавлен.");
+                System.out.println("Элемент успешно добавлен");
         }else{
             try {
                 collectionManager.addElement(scriptManager.getPersonFromScript());
                 System.out.println("Элемент успешно добавлен");
-            }catch (Exception e) {new ScriptException("Команда не выполнена");}
+            }catch (Exception e) {System.out.println("Команда не выполнена");}
         }
     }
 }

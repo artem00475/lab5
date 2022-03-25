@@ -28,7 +28,7 @@ public class ShowCommand implements Command{
     @Override
     public void execute(Boolean argument) {
         if (collectionManager.getCollection().isEmpty()) {
-            System.out.printf("Нельзя выполнить команду %s: коллекция пустая%n", getName());
+            System.out.printf("Нельзя выполнить команду %s: коллекция пустая\n", getName());
         } else {
             System.out.println("Все элементы коллекции: ");
             for (Person person : collectionManager.getCollection()) {

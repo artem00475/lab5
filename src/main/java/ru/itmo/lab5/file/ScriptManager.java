@@ -37,7 +37,7 @@ public class ScriptManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            throw new ScriptException("Файл не найден");
         }
     }
 
@@ -61,21 +61,21 @@ public class ScriptManager {
             name = scanned;
             scanned = stringDeque.remove();
             if (scanned.equals("")) {
-                throw new CoordinatesException("У элемента отсутствует координата Х");
+                throw new CoordinatesException("У элемента отсутствует поле coordinatesX");
             }
             try {
                 coordinatesX = Integer.parseInt(scanned);
             } catch (NumberFormatException e) {
-                throw new CoordinatesException("В поле координата Х нечисловое значение");
+                throw new CoordinatesException("В поле coordinatesX нечисловое значение");
             }
             scanned = stringDeque.remove();
             if (scanned.equals("")) {
-                throw new CoordinatesException("У элемента отсутствует координата Y");
+                throw new CoordinatesException("У элемента отсутствует поле coordinatesY");
             }
             try {
                 coordinatesY = Integer.parseInt(scanned);
             } catch (NumberFormatException e) {
-                throw new CoordinatesException("В поле координата Y нечисловое значение");
+                throw new CoordinatesException("В поле coordinatesY нечисловое значение");
             }
             scanned = stringDeque.remove();
             if (scanned.equals("")) {

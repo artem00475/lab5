@@ -18,7 +18,7 @@ public class ConsoleManager {
 
 
     public Person getPersonFromConsole(){
-            System.out.println("Введите данные о человеке:");
+            System.out.println("Введите данные элемента:");
             Person person = new Person(getName(), getCoordinatesX(), getCoordinatesY(), getHeight(), getEyeColor(), getHairColor(), getNationality(), getLocationX(), getLocationY(), getLocationZ(), getLocationName());
             return person;
     }
@@ -28,7 +28,7 @@ public class ConsoleManager {
         String name;
         while (true) {
             try {
-                System.out.println("Введите имя: ");
+                System.out.println("Введите поле name: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
                     throw new NameException("У элемента отсутсвует поле name");
@@ -44,15 +44,15 @@ public class ConsoleManager {
         Integer coordinatesX;
         while (true) {
             try {
-                System.out.println("Введите координату Х: ");
+                System.out.println("Введите поле coordinatesX: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new CoordinatesException("У элемента отсутствует координата Х");
+                    throw new CoordinatesException("У элемента отсутствует поле coordinatesX");
                 }
                 try {
                     coordinatesX = Integer.parseInt(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле координата Х нечисловое значение");
+                    throw new CoordinatesException("В поле coordinatesX нечисловое значение");
                 }
                 break;
             }catch (Exception e) {}
@@ -64,15 +64,15 @@ public class ConsoleManager {
         Integer coordinatesY;
         while (true) {
             try {
-                System.out.println("Введите координату Y: ");
+                System.out.println("Введите поле coordinatesY: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new CoordinatesException("У элемента отсутствует координата Y");
+                    throw new CoordinatesException("У элемента отсутствует поле coordinatesY");
                 }
                 try {
                     coordinatesY = Integer.parseInt(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле координата Y нечисловое значение");
+                    throw new CoordinatesException("В поле coordinatesY нечисловое значение");
                 }
                 break;
             }catch (Exception e) {}
@@ -91,7 +91,7 @@ public class ConsoleManager {
                 try {
                     height = Double.parseDouble(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле координата Y нечисловое значение");
+                    throw new CoordinatesException("В поле height нечисловое значение");
                 }
                 break;
             }catch (Exception e) {}
@@ -103,7 +103,7 @@ public class ConsoleManager {
         ColorE eyeColor;
         while (true) {
             try {
-                System.out.println("Введите цвет глаз: ");
+                System.out.println("Введите поле eyeColor (из списка: green, red, yellow, brown): ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
                     throw new EyeColorException("У элемента отсутствует поле eyeColor");
@@ -123,7 +123,7 @@ public class ConsoleManager {
         ColorH hairColor;
         while (true) {
             try {
-                System.out.println("Введите поле hairColor: ");
+                System.out.println("Введите поле hairColor (из списка: red, black, orange, brown): ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
                     throw new EyeColorException("У элемента отсутствует поле hairColor");
@@ -143,10 +143,10 @@ public class ConsoleManager {
         Country nationality;
         while (true) {
             try {
-                System.out.println("Введите поле nationality: ");
+                System.out.println("Введите поле nationality (из списка: usa, spain, india): ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new EyeColorException("У элемента отсутствует поле eyeColor");
+                    throw new EyeColorException("У элемента отсутствует поле nationality");
                 }
                 try {
                     nationality = Country.valueOf(scanned.toUpperCase(Locale.ROOT));

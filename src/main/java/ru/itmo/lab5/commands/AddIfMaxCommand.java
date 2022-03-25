@@ -2,8 +2,6 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
-import ru.itmo.lab5.exceptions.CommandException;
-import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 import ru.itmo.lab5.person.Person;
 
@@ -25,7 +23,7 @@ public class AddIfMaxCommand implements Command{
 
     @Override
     public String getName() {
-        return "add_if_max {element}";
+        return "add_if_max";
     }
 
     @Override
@@ -39,20 +37,20 @@ public class AddIfMaxCommand implements Command{
                 Person person = consoleManager.getPersonFromConsole();
                 if (collectionManager.ifMore(person)) {
                     collectionManager.addElement(person);
-                    System.out.println("Объект успешно добавлен");
+                    System.out.println("Элемент успешно добавлен");
                 } else {
-                    System.out.println("Значение объекта не превышает наибольшего элемента коллекции");
+                    System.out.println("Значение элемента не превышает наибольшего элемента коллекции");
                 }
         }else {
             try {
                 Person person = scriptManager.getPersonFromScript();
                 if (collectionManager.ifMore(person)) {
                     collectionManager.addElement(person);
-                    System.out.println("Объект успешно добавлен");
+                    System.out.println("Элемент успешно добавлен");
                 } else {
-                    System.out.println("Значение объекта не превышает наибольшего элемента коллекции");
+                    System.out.println("Значение элемента не превышает наибольшего элемента коллекции");
                 }
-            }catch (Exception e) {new ScriptException("Команда не выполнена");}
+            }catch (Exception e) {System.out.println("Команда не выполнена");}
         }
 
     }

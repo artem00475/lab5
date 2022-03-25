@@ -2,8 +2,6 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
-import ru.itmo.lab5.exceptions.CommandException;
-import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 public class RemoveByIdCommand implements Command {
@@ -24,7 +22,7 @@ public class RemoveByIdCommand implements Command {
 
     @Override
     public String getName() {
-        return "remove_by_id id";
+        return "remove_by_id";
     }
 
     @Override
@@ -37,13 +35,13 @@ public class RemoveByIdCommand implements Command {
         if (argument) {
                 int id = consoleManager.getID();
                 collectionManager.removeElementByID(id);
-                System.out.println("Объект успешно удалён.");
+                System.out.println("Элемент успешно удалён.");
         }else {
             try {
                 int id = scriptManager.getID();
                 collectionManager.removeElementByID(id);
-                System.out.println("Объект успешно удалён.");
-            }catch (Exception e) {new ScriptException("Команда не выполнена");}
+                System.out.println("Элемент успешно удалён.");
+            }catch (Exception e) {System.out.println("Команда не выполнена");}
         }
     }
 }

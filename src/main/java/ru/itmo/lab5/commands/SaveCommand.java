@@ -30,7 +30,7 @@ public class SaveCommand implements Command{
             collectionManager.saveCollection();
             System.out.println("Коллеекция сохранена");
         }else {
-            System.out.println("Сохранение невозможно(нет файла)");
+            System.out.println("Сохранение невозможно (нет файла)");
         }
     }
 }

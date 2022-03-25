@@ -2,8 +2,6 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
-import ru.itmo.lab5.exceptions.CommandException;
-import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 public class CountGreaterThanLocationCommand implements Command {
@@ -24,7 +22,7 @@ public class CountGreaterThanLocationCommand implements Command {
 
     @Override
     public String getName() {
-        return "count_greater_than_location location";
+        return "count_greater_than_location";
     }
 
     @Override
@@ -39,7 +37,7 @@ public class CountGreaterThanLocationCommand implements Command {
         }else {
             try {
                 System.out.println(collectionManager.countGreaterLocation(scriptManager.getLocationFromScript()));
-            }catch (Exception e) {new ScriptException("Команда не выполнена");}
+            }catch (Exception e) {System.out.println("Команда не выполнена");}
         }
     }
 }

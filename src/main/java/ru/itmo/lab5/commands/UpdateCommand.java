@@ -2,7 +2,6 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
-import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 public class UpdateCommand implements Command{
@@ -23,7 +22,7 @@ public class UpdateCommand implements Command{
 
     @Override
     public String getName() {
-        return "update id {element}";
+        return "update id";
     }
 
     @Override
@@ -36,13 +35,13 @@ public class UpdateCommand implements Command{
         if (argument) {
                 int id = consoleManager.getID();
                 collectionManager.updateElement(id, consoleManager.getPersonFromConsole());
-                System.out.println("Объект успешно оновлен.");
+                System.out.println("Элемент успешно обновлен");
         }else {
             try {
                 int id = scriptManager.getID();
                 collectionManager.updateElement(id, scriptManager.getPersonFromScript());
-                System.out.println("Объект успешно оновлен.");
-            }catch (Exception e) {new ScriptException("Команда не выполнена");}
+                System.out.println("Элемент успешно оновлен");
+            }catch (Exception e) {System.out.println("Команда не выполнена");}
         }
     }
 }
