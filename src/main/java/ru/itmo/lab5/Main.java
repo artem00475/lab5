@@ -38,6 +38,9 @@ public class Main
         };
         CommandManager commandManager = new CommandManager(collectionManager, scanner, commands,scriptQueue);
         commandManager.fileMode();
+
+
+
     }
 }
 

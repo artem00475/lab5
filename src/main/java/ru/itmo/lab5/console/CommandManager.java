@@ -1,9 +1,10 @@
 package ru.itmo.lab5.console;
 
-import org.json.simple.parser.ParseException;
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.commands.Command;
+import ru.itmo.lab5.exceptions.FileException;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Deque;
 import java.util.Scanner;
@@ -24,16 +25,36 @@ public class CommandManager {
         this.stringDeque=stringDeque;
     }
 
-    public void fileMode() throws FileNotFoundException, ParseException, java.text.ParseException {
+    public void fileMode() {
         System.out.print("Введите переменную окружения, откуда читать и куда сохранять коллекцию(exit - выход из ввода):");
-        String scannedPath = scanner.nextLine();
-        if (scannedPath.equals("exit")){
-            ifEmpty=true;
-            System.out.println("Переменная окружения не введена, сохранить коллекцию будет невозможно.");
-        } else {
-            path=scannedPath;
-            //path=System.getenv(scannedPath);
-            collectionManager.pasreFileToCollection(path);
+        while (true) {
+            try {
+                System.out.print("Введите переменную окружения, откуда читать и куда сохранять коллекцию(exit - выход из ввода):");
+                String scannedPath = scanner.nextLine();
+                if (scannedPath.equals("exit")) {
+                    ifEmpty = true;
+                    System.out.println("Переменная окружения не введена, сохранить коллекцию будет невозможно.");
+                    break;
+                } else {
+                    path = scannedPath;
+                    path = System.getenv(scannedPath);
+                    String[] checkPath = path.split(";");
+                    if (checkPath.length == 1 && path.substring(path.length() - 5, path.length()).equals(".json")) {
+                        try {
+                            File file = new File(path);
+                            Scanner s = new Scanner(file);
+                            collectionManager.pasreFileToCollection(s,path);
+                        }catch (FileNotFoundException e) {throw new FileException("Файл не существует");}
+                        break;
+                    }else if (checkPath.length > 1){
+                        throw new FileException("Переменная окружения содержит больше одного пути");
+                    }else if (!path.substring(path.length() - 5, path.length()).equals(".json")){
+                        throw new FileException("Указан путь не до json-файла");
+                    }
+                }
+            }catch (Exception e) {
+                System.out.print("Введите переменную окружения снова: ");
+            }
         }
 
         consoleMode();
@@ -47,16 +68,17 @@ public class CommandManager {
             if (com.equals("exit")){break;}
             else {
                 for (Command command : commands){
-                    if (com.equals(command.getName())){
-                        if (com.equals("execute_script file_name")){
+                    if (com.equals(command.getName())) {
+                        if (com.equals("execute_script file_name")) {
                             command.execute(ifConsole);
                             scriptMode();
-                        }
-                        else if (!command.hasArgement()){
+                        } else if (!command.hasArgement()) {
                             command.execute(ifEmpty);
-                        }else {
+                        } else {
                             command.execute(ifConsole);
                         }
+                    }else {
+                        System.out.println("Команда введениа неверно, или такой команды не существует");
                     }
                 }
             }

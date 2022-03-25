@@ -1,3 +1,2 @@
-info
-execute_script file_name
-C:\Users\Артём\Desktop\ИТМО\2 семестр\Программирование\5 лаба\src\script1
+remove_by_id id
+str

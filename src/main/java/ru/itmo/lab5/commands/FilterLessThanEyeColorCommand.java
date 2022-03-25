@@ -2,6 +2,8 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
+import ru.itmo.lab5.exceptions.CommandException;
+import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 import ru.itmo.lab5.person.Person;
 
@@ -34,13 +36,15 @@ public class FilterLessThanEyeColorCommand implements Command {
     @Override
     public void execute(Boolean argument) {
         if (argument) {
-            for (Person person : collectionManager.filterLessThanEyeColor(consoleManager.getEyeColor())) {
-                System.out.println(person.toString());
-            }
+                for (Person person : collectionManager.filterLessThanEyeColor(consoleManager.getEyeColor())) {
+                    System.out.println(person.toString());
+                }
         } else {
-            for (Person person : collectionManager.filterLessThanEyeColor(scriptManager.getEyeColor())) {
-                System.out.println(person.toString());
-            }
+            try {
+                for (Person person : collectionManager.filterLessThanEyeColor(scriptManager.getEyeColor())) {
+                    System.out.println(person.toString());
+                }
+            }catch (Exception e) {new ScriptException("Команда не выполнена");}
         }
     }
 }

@@ -1,6 +1,6 @@
 {"persons" : [
     {
-        "id" : "-1",
+        "id" : "21",
         "name" : "Artem",
         "coordinatesX" : "110",
         "coordinatesY" : "12",
@@ -21,7 +21,7 @@
         "coordinatesY" : "20",
         "date" : "12:23:46 24.03.2022",
         "height" : "161.0",
-        "eyeColor" : "fd",
+        "eyeColor" : "RED",
         "hairColor" : "ORANGE",
         "nationality" : "USA",
         "locationX" : "100",

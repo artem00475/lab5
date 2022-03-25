@@ -98,6 +98,10 @@ public class Person {
         return fields;
     }
 
+    public static LinkedList<Integer> getIdArray(){
+        return idArray;
+    }
+
     }
 
 

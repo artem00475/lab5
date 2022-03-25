@@ -2,6 +2,8 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
+import ru.itmo.lab5.exceptions.CommandException;
+import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 public class RemoveGreaterCommand implements Command{
@@ -33,16 +35,18 @@ public class RemoveGreaterCommand implements Command{
     @Override
     public void execute(Boolean argument) {
         if (argument) {
-            if (collectionManager.removeGreater(consoleManager.getPersonFromConsole())) {
-                System.out.println("Объекты успешно удалены");
-            } else {
-                System.out.println("В коллекции нет объектов, удовлетворяющих условию");
-            }
+                if (collectionManager.removeGreater(consoleManager.getPersonFromConsole())) {
+                    System.out.println("Объекты успешно удалены");
+                } else {
+                    System.out.println("В коллекции нет объектов, удовлетворяющих условию");
+                }
         }else {
             if (collectionManager.removeGreater(scriptManager.getPersonFromScript())) {
                 System.out.println("Объекты успешно удалены");
             } else {
-                System.out.println("В коллекции нет объектов, удовлетворяющих условию");
+                try {
+                    System.out.println("В коллекции нет объектов, удовлетворяющих условию");
+                } catch (Exception e) {new ScriptException("Команда не выполнена");}
             }
         }
 

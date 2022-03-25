@@ -1,5 +1,6 @@
 package ru.itmo.lab5.file;
 
+import ru.itmo.lab5.exceptions.*;
 import ru.itmo.lab5.person.*;
 
 import java.io.File;
@@ -41,42 +42,182 @@ public class ScriptManager {
     }
 
     public Person getPersonFromScript(){
-        String name = stringDeque.remove();
-        Integer coordinatesX = Integer.parseInt(stringDeque.remove());
-        Integer coordinatesY = Integer.parseInt(stringDeque.remove());
-        Double height = Double.parseDouble(stringDeque.remove());
-        String eyeColorTest = stringDeque.remove();
-        ColorE eyeColor = ColorE.valueOf(eyeColorTest.toUpperCase(Locale.ROOT));
-        String hairColorTest = stringDeque.remove();
-        ColorH hairColor = ColorH.valueOf(hairColorTest.toUpperCase(Locale.ROOT));
-        String nationalityTest = stringDeque.remove();
-        Country nationality = Country.valueOf(nationalityTest.toUpperCase(Locale.ROOT));
-        Integer locationX = Integer.parseInt(stringDeque.remove());
-        Double locationY = Double.parseDouble(stringDeque.remove());
-        Long locationZ = Long.parseLong(stringDeque.remove());
-        String locationName = stringDeque.remove();
+        String scanned;
+        String name;
+        Integer coordinatesX;
+        Integer coordinatesY;
+        Double height;
+        ColorE eyeColor;
+        ColorH hairColor;
+        Country nationality;
+        Integer locationX;
+        Double locationY;
+        Long locationZ;
+        String locationName;
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new NameException("У элемента отсутсвует поле name");
+            }
+            name = scanned;
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new CoordinatesException("У элемента отсутствует координата Х");
+            }
+            try {
+                coordinatesX = Integer.parseInt(scanned);
+            } catch (NumberFormatException e) {
+                throw new CoordinatesException("В поле координата Х нечисловое значение");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new CoordinatesException("У элемента отсутствует координата Y");
+            }
+            try {
+                coordinatesY = Integer.parseInt(scanned);
+            } catch (NumberFormatException e) {
+                throw new CoordinatesException("В поле координата Y нечисловое значение");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new CoordinatesException("У элемента отсутствует поле height");
+            }
+            try {
+                height = Double.parseDouble(scanned);
+            } catch (NumberFormatException e) {
+                throw new CoordinatesException("В поле height нечисловое значение");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new EyeColorException("У элемента отсутствует поле eyeColor");
+            }
+            try {
+                eyeColor = ColorE.valueOf(scanned.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                throw new EyeColorException("Некорректное значение поля eyeColor");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new EyeColorException("У элемента отсутствует поле hairColor");
+            }
+            try {
+                hairColor = ColorH.valueOf(scanned.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                throw new EyeColorException("Некорректное значение поля hairColor");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new EyeColorException("У элемента отсутствует поле eyeColor");
+            }
+            try {
+                nationality = Country.valueOf(scanned.toUpperCase(Locale.ROOT));
+            } catch (IllegalArgumentException e) {
+                throw new EyeColorException("Некорректное значение поля nationality");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new CoordinatesException("У элемента отсутствует поле locationX");
+            }
+            try {
+                locationX = Integer.parseInt(scanned);
+            } catch (NumberFormatException e) {
+                throw new CoordinatesException("В поле locationX нечисловое значение");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new CoordinatesException("У элемента отсутствует поле locationY");
+            }
+            try {
+                locationY=Double.parseDouble(scanned);
+            } catch (NumberFormatException e) {
+                throw new CoordinatesException("В поле locationY нечисловое значение");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new CoordinatesException("У элемента отсутствует поле locationZ");
+            }
+            try {
+                locationZ = Long.parseLong(scanned);
+            } catch (NumberFormatException e) {
+                throw new CoordinatesException("В поле locationZ нечисловое значение");
+            }
+            scanned = stringDeque.remove();
+            if (scanned.equals("")) {
+                throw new NameException("У элемента отсутсвует поле locationName");
+            }
+            locationName = scanned;
         Person person = new Person(name, coordinatesX, coordinatesY, height, eyeColor, hairColor, nationality, locationX, locationY, locationZ, locationName);
         return person;
     }
 
     public Location getLocationFromScript(){
-        Integer locationX = Integer.parseInt(stringDeque.remove());
-        Double locationY = Double.parseDouble(stringDeque.remove());
-        Long locationZ = Long.parseLong(stringDeque.remove());
-        String locationName = stringDeque.remove();
+        Integer locationX;
+        Double locationY;
+        Long locationZ;
+        String locationName;
+        String scanned = stringDeque.remove();
+        if (scanned.equals("")) {
+            throw new CoordinatesException("У элемента отсутствует поле locationX");
+        }
+        try {
+            locationX = Integer.parseInt(scanned);
+        } catch (NumberFormatException e) {
+            throw new CoordinatesException("В поле locationX нечисловое значение");
+        }
+        scanned = stringDeque.remove();
+        if (scanned.equals("")) {
+            throw new CoordinatesException("У элемента отсутствует поле locationY");
+        }
+        try {
+            locationY=Double.parseDouble(scanned);
+        } catch (NumberFormatException e) {
+            throw new CoordinatesException("В поле locationY нечисловое значение");
+        }
+        scanned = stringDeque.remove();
+        if (scanned.equals("")) {
+            throw new CoordinatesException("У элемента отсутствует поле locationZ");
+        }
+        try {
+            locationZ = Long.parseLong(scanned);
+        } catch (NumberFormatException e) {
+            throw new CoordinatesException("В поле locationZ нечисловое значение");
+        }
+        scanned = stringDeque.remove();
+        if (scanned.equals("")) {
+            throw new NameException("У элемента отсутсвует поле locationName");
+        }
+        locationName = scanned;
         Location location = new Location(locationX,locationY,locationZ,locationName);
         return location;
     }
 
     public ColorE getEyeColor(){
-        System.out.print("Введите значение eyeColor из списка: ");
-        ColorE eyeColor = ColorE.valueOf(stringDeque.remove().toUpperCase(Locale.ROOT));
+        ColorE eyeColor;
+        String scanned = stringDeque.remove();
+        if (scanned.equals("")) {
+            throw new EyeColorException("У элемента отсутствует поле eyeColor");
+        }
+        try {
+            eyeColor = ColorE.valueOf(scanned.toUpperCase(Locale.ROOT));
+        } catch (IllegalArgumentException e) {
+            throw new EyeColorException("Некорректное значение поля eyeColor");
+        }
         return eyeColor;
     }
 
     public int getID(){
-        System.out.print("Введите значение id: ");
-        int id = Integer.parseInt(stringDeque.remove());
+        int id;
+        String scanned = stringDeque.remove();
+        if (scanned.isEmpty()) {
+            throw new IdException("Ничего не введено");
+        }
+        try {
+            id = Integer.parseInt(scanned);
+        } catch (NumberFormatException e) {
+            throw new CoordinatesException("Введено нечисловое значение");
+        }
+        if (!Person.getIdArray().contains(id)){
+            throw new IdException("Элемента с таким id нет в коллекции");
+        }
         return id;
     }
 }

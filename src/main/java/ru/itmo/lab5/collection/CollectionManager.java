@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.Scanner;
 
 public class CollectionManager {
     private Queue<Person> collection;
@@ -38,8 +39,8 @@ public class CollectionManager {
         return personList.toString();
     }
 
-    public void pasreFileToCollection(String path) throws FileNotFoundException, ParseException, java.text.ParseException {
-        fileManager.parseFile(collection,path);
+    public void pasreFileToCollection(Scanner scanner, String string) throws FileNotFoundException, ParseException, java.text.ParseException {
+        fileManager.parseFile(collection,scanner,string);
     }
     public void addElement(Person person){
         collection.add(person);
