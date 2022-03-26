@@ -1,12 +1,15 @@
 package ru.itmo.lab5.person;
 
 import ru.itmo.lab5.exceptions.IdException;
-import sun.awt.image.ImageWatched;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
 
+/**
+ * Класс, описывающий человека
+ * Объекты класса являются элементами коллекции
+ */
 public class Person {
     private static Integer uniqueID=1;
     private int id; //Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
@@ -21,7 +24,22 @@ public class Person {
     private static LinkedList<Integer> idArray = new LinkedList<Integer>();
 
 
-
+    /**
+     * Конструктор, задающий параметры для создания человека (id и date задаются)
+     * @param id  id
+     * @param name  имя
+     * @param coordinatesX  координата Х
+     * @param coordinatesY  координата Y
+     * @param date  дата создания
+     * @param height  рост
+     * @param eyeColor  цвет глаз
+     * @param hairColor  цвет волос
+     * @param nationality  национальность
+     * @param locationX координата Х местоположения
+     * @param locationY координата Y местоположения
+     * @param locationZ координата Z местоположения
+     * @param locationName название местоположения
+     */
     public Person(int id, String name, Integer coordinatesX, Integer coordinatesY, Date date, Double height, ColorE eyeColor, ColorH hairColor, Country nationality, Integer locationX, Double locationY, Long locationZ, String locationName ){
         if (idArray.isEmpty()){
            idArray.add(id);
@@ -45,6 +63,20 @@ public class Person {
        this.location=new Location(locationX,locationY,locationZ,locationName);
     }
 
+    /**
+     * Конструктор, задающий параметры для создания человека (id и date создаются автоматически)
+     * @param name имя
+     * @param coordinatesX координата Х
+     * @param coordinatesY координата Y
+     * @param height рост
+     * @param eyeColor цвет глаз
+     * @param hairColor цвет волос
+     * @param nationality национальность
+     * @param locationX координата Х местоположения
+     * @param locationY координата Y местоположения
+     * @param locationZ координата Z местоположения
+     * @param locationName название местоположения
+     */
     public Person(String name,Integer coordinatesX,Integer coordinatesY, Double height, ColorE eyeColor, ColorH hairColor, Country nationality, Integer locationX, Double locationY, Long locationZ, String locationName){
         this.id  = uniqueID;
         idArray.add(id);
@@ -58,28 +90,116 @@ public class Person {
         this.nationality=nationality;
         this.location=new Location(locationX,locationY,locationZ,locationName);
     }
+
+    /**
+     * Возвращает id еловека
+     * @return id
+     */
     public int getID(){return id;}
     @Override
     public String toString(){
         return String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s",
                 id, name, coordinates, new SimpleDateFormat("HH:mm:ss dd.MM.yyyy").format(creationDate), height, eyeColor, hairColor, nationality, location);
     }
+
+    /**
+     * Возвращает имя человека
+     * @return name
+     */
     public String getName(){return name;}
+
+    /**
+     * Возвращает координаты человека
+     * @return coordinates
+     * @see Coordinates
+     */
     public Coordinates getCoordinates(){return coordinates;}
+
+    /**
+     * Возвращает рост человека
+     * @return height
+     */
     public Double getHeight(){return height;}
+
+    /**
+     * Возвращает цвет глаз человека
+     * @return eyeColor
+     * @see ColorE
+     */
     public ColorE getEyeColor(){return eyeColor;}
+
+    /**
+     * Возвращает цвет волос человека
+     * @return hairColor
+     * @see ColorH
+     */
     public ColorH getHairColor(){return hairColor;}
+
+    /**
+     * Возвращает национальность человека
+     * @return nationality
+     * @see Country
+     */
     public Country getNationality(){return nationality;}
+
+    /**
+     * Возвращает местоположение человека
+     * @return location
+     * @see Location
+     */
     public Location getLocation(){return location;}
 
+    /**
+     * Устанавливает новое имя человека
+     * @param name новое имя
+     */
     public void setName(String name){ this.name=name;}
+
+    /**
+     * Устанавливает новые координаты человека
+     * @param coordinates новые координаты
+     * @see Coordinates
+     */
     public void setCoordinates(Coordinates coordinates){this.coordinates= coordinates;}
+
+    /**
+     * Устанавливает  новый рост человека
+     * @param height  новый рост
+     */
     public void setHeight(Double height){this.height= height;}
+
+    /**
+     * Устанавливает новый цвет глаз человека
+     * @param eyeColor новый цвет глаз
+     * @see ColorE
+     */
     public void setEyeColor(ColorE eyeColor){this.eyeColor= eyeColor;}
+
+    /**
+     * Устанавливает новй цвет волос человека
+     * @param hairColor новый цвет волос
+     * @see ColorH
+     */
     public void setHairColor(ColorH hairColor){this.hairColor= hairColor;}
+
+    /**
+     * Устанавливает новую национальность человека
+     * @param nationality новая национальность
+     * @see Country
+     */
     public void setNationality(Country nationality){this.nationality= nationality;}
+
+    /**
+     * Устанавливает новое мкстоположение человека
+     * @param location новое местопложение
+     * @see Location
+     */
     public void setLocation(Location location){this.location= location;}
 
+    /**
+     * Возвращает список со всеми полями человека
+     * @return fields список с полями
+     */
     public LinkedList<String> getPersonFields(){
         LinkedList<String> fields= new LinkedList<>();
         fields.add(String.valueOf(id));
@@ -98,10 +218,23 @@ public class Person {
         return fields;
     }
 
+    /**
+     * Возвращает список со всеми id коллекции
+     * @return idArray список со всеми id коллекции
+     */
     public static LinkedList<Integer> getIdArray(){
         return idArray;
     }
+
+    /**
+     * Удаляет id из списка всех id
+     * @param id id удаленного элемента
+     */
     public static void removeFromIdArray(int id){idArray.remove(id);}
+
+    /**
+     * Очищает список всех id
+     */
     public static void removeAllFromIdArray(){idArray.clear();}
 
     }
