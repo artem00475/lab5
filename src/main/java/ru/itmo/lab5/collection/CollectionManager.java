@@ -1,6 +1,5 @@
 package ru.itmo.lab5.collection;
 
-import org.json.simple.parser.ParseException;
 import ru.itmo.lab5.file.FileManager;
 import ru.itmo.lab5.person.*;
 

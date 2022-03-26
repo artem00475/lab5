@@ -1,4 +1,6 @@
-package ru.itmo.lab5.person;
+package ru.itmo.lab5.collection;
+
+import ru.itmo.lab5.person.Person;
 
 import java.util.Comparator;
 
