@@ -40,6 +40,7 @@ public class CommandManager {
      * Инициализация основного файла коллекции
      */
     public void fileMode() {
+        Boolean fileFound=false;
         System.out.print("Введите переменную окружения, для заполнения коллекции из файла и сохранения коллекции (exit - выход из ввода):");
         while (true) {
             try {
@@ -52,22 +53,20 @@ public class CommandManager {
                     path = scannedPath;
                     path = System.getenv(scannedPath);
                     String[] checkPath = path.split(";");
-                    if (checkPath.length == 1 && path.startsWith(".json", path.length() - 5)) {
+                    if (checkPath.length == 1) {
                         try {
                             File file = new File(path);
                             Scanner s = new Scanner(file);
                             collectionManager.parseFileToCollection(s,path);
+                            fileFound=true;
                         }catch (FileNotFoundException e) {throw new FileException("Файл не существует");}
                         break;
                     }else if (checkPath.length > 1){
                         throw new FileException("Переменная окружения содержит больше одного пути");
-                    }else if (!path.startsWith(".json", path.length() - 5)){
-                        throw new FileException("Указан путь не до json-файла");
                     }
                 }
-            }catch (Exception e) {
-                System.out.print("Введите переменную окружения снова: ");
-            }
+            }catch (Exception ignore) { }
+            if (!fileFound) System.out.print("Введите переменную окружения снова: ");
         }
         consoleMode();
     }
