@@ -4,11 +4,23 @@ import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
 import ru.itmo.lab5.file.ScriptManager;
 
+/**
+ * Команда, удаляющая элементы, превышающие заданный
+ */
 public class RemoveGreaterCommand implements Command{
     private ConsoleManager consoleManager;
     private CollectionManager collectionManager;
     private ScriptManager scriptManager;
 
+    /**
+     * Конструктор, задающий параметры объекта
+     * @param collectionManager менеджер коллекции
+     * @see CollectionManager
+     * @param consoleManager менеджер консоли
+     * @see ConsoleManager
+     * @param scriptManager менеджер скрипта
+     * @see ScriptManager
+     */
     public RemoveGreaterCommand(CollectionManager collectionManager, ConsoleManager consoleManager,ScriptManager scriptManager){
         this.collectionManager = collectionManager;
         this.consoleManager = consoleManager;

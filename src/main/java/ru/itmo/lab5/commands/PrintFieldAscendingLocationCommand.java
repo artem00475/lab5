@@ -3,9 +3,17 @@ package ru.itmo.lab5.commands;
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.person.Person;
 
+/**
+ * Команда, выводящая значения поля location в порядке возрастания
+ */
 public class PrintFieldAscendingLocationCommand implements Command{
     private CollectionManager collectionManager;
 
+    /**
+     * Конструктор, задающий параметры объекта
+     * @param collectionManager менеджер коллекции
+     * @see CollectionManager
+     */
     public PrintFieldAscendingLocationCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
     }

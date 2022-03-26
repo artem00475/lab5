@@ -5,7 +5,7 @@ package ru.itmo.lab5.exceptions;
  */
 public class CoordinatesException extends RuntimeException{
     /**
-     * Конструктор создаещий исключение с описанием
+     * Конструктор создающий исключение с описанием
      * @param string описание
      */
     public CoordinatesException(String string){

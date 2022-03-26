@@ -6,11 +6,21 @@ import java.io.File;
 import java.util.Deque;
 import java.util.Scanner;
 
+/**
+ * Команда, выполняющая скрипт
+ */
 public class ExcecuteCommand implements Command {
     private Scanner scanner;
     private ScriptManager scriptManager;
     private Deque<String> deque;
 
+    /**
+     * Конструктор, задающий параметры объекта
+     * @param scanner консоль
+     * @param scriptManager менеджер скрипта
+     * @see ScriptManager
+     * @param deque очередь команд из скрипта
+     */
     public ExcecuteCommand(Scanner scanner, ScriptManager scriptManager, Deque<String> deque){
         this.scanner=scanner;
         this.scriptManager = scriptManager;

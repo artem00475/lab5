@@ -1,5 +1,8 @@
 package ru.itmo.lab5.commands;
 
+/**
+ * Команда, выводящая список команд
+ */
 public class HelpCommand implements Command{
     @Override
     public boolean hasArgement() {

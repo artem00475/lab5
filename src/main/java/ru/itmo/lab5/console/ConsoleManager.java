@@ -15,7 +15,7 @@ public class ConsoleManager {
     private CollectionManager collectionManager;
 
     /**
-     * Конструктор класса
+     * Конструктор, задающий параметры объекта
      * @param scanner консоль
      * @param collectionManager менеджер коллекций
      * @see CollectionManager

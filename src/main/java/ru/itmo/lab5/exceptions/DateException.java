@@ -5,7 +5,7 @@ package ru.itmo.lab5.exceptions;
  */
 public class DateException extends RuntimeException{
     /**
-     * Конструктор создаещий исключение с описанием
+     * Конструктор создающий исключение с описанием
      * @param string описание
      */
     public DateException(String string){

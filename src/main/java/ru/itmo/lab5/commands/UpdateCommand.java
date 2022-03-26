@@ -4,11 +4,23 @@ import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
 import ru.itmo.lab5.file.ScriptManager;
 
+/**
+ * Команда, обновляющая элемент по id
+ */
 public class UpdateCommand implements Command{
     private ConsoleManager consoleManager;
     private CollectionManager collectionManager;
     private ScriptManager scriptManager;
 
+    /**
+     * Конструктор, задающий параметры объекта
+     * @param consoleManager менеджер консоли
+     * @see ConsoleManager
+     * @param collectionManager менеджер коллекции
+     * @see CollectionManager
+     * @param scriptManager менеджер скрипта
+     * @see ScriptManager
+     */
     public UpdateCommand(ConsoleManager consoleManager, CollectionManager collectionManager, ScriptManager scriptManager){
         this.consoleManager = consoleManager;
         this.collectionManager = collectionManager;

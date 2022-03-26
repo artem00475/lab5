@@ -3,9 +3,17 @@ package ru.itmo.lab5.commands;
 
 import ru.itmo.lab5.collection.CollectionManager;
 
+/**
+ * Команда, выводящая информацию о коллекции
+ */
 public class InfoCommand implements Command{
     private CollectionManager collectionManager;
 
+    /**
+     * Конструктор, задающий параметры объекта
+     * @param collectionManager менеджер коллекции
+     * @see CollectionManager
+     */
     public InfoCommand(CollectionManager collectionManager) {
         this.collectionManager = collectionManager;
     }

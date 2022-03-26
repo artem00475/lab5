@@ -4,11 +4,23 @@ import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.console.ConsoleManager;
 import ru.itmo.lab5.file.ScriptManager;
 
+/**
+ * Команда, добавляющая элемент в коллекцию
+ */
 public class AddCommand implements Command {
     private ConsoleManager consoleManager;
     private CollectionManager collectionManager;
     private ScriptManager scriptManager;
 
+    /**
+     * Конструктор, задающий параметры объекта
+     * @param consoleManager  менеджер консоли
+     * @see ConsoleManager
+     * @param collectionManager менеджер коллекуии
+     * @see CollectionManager
+     * @param scriptManager менеджер скрипта
+     * @see ScriptManager
+     */
     public AddCommand( ConsoleManager consoleManager, CollectionManager collectionManager, ScriptManager scriptManager)  {
         this.consoleManager = consoleManager;
         this.collectionManager=collectionManager;

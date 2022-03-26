@@ -22,7 +22,7 @@ public class CommandManager {
     private Deque<String> stringDeque;
 
     /**
-     * Конструктор класса
+     * Конструктор, задающий параметры объекта
      * @param collectionManager менеджер коллекций
      * @see CollectionManager
      * @param scanner консоль

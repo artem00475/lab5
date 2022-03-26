@@ -18,7 +18,7 @@ public class ScriptManager {
     private Deque<String> stringDeque;
 
     /**
-     * Конструтор, задающий параметры класса
+     * Конструтор, задающий параметры объекта
      * @param stringDeque очередь для команд из скриптов
      */
     public ScriptManager(Deque<String> stringDeque){
