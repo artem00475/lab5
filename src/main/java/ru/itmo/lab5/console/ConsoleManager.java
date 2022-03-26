@@ -7,16 +7,28 @@ import ru.itmo.lab5.person.*;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Класс, реализующий ввод с консоли
+ */
 public class ConsoleManager {
     private Scanner scanner;
     private CollectionManager collectionManager;
 
+    /**
+     * Конструктор класса
+     * @param scanner консоль
+     * @param collectionManager менеджер коллекций
+     */
     public ConsoleManager(Scanner scanner, CollectionManager collectionManager){
         this.scanner = scanner;
         this.collectionManager = collectionManager;
     }
 
 
+    /**
+     * ВОзвращает объект класса {@link Person} из консоли
+     * @return объект класса {@link Person}
+     */
     public Person getPersonFromConsole(){
             System.out.print("Введите данные элемента:");
             Person person = new Person(getName(), getCoordinatesX(), getCoordinatesY(), getHeight(), getEyeColor(), getHairColor(), getNationality(), getLocationX(), getLocationY(), getLocationZ(), getLocationName());
@@ -24,6 +36,10 @@ public class ConsoleManager {
     }
 
 
+    /**
+     * Возвращает имя из консоли
+     * @return name
+     */
     public String getName(){
         String name;
         while (true) {
@@ -40,6 +56,10 @@ public class ConsoleManager {
         return name;
     }
 
+    /**
+     * Возвращает координату Х из консоли
+     * @return coordinatesX
+     */
     public Integer getCoordinatesX(){
         Integer coordinatesX;
         while (true) {
@@ -61,6 +81,10 @@ public class ConsoleManager {
         return coordinatesX;
     }
 
+    /**
+     * Возвращает координату Y из консоли
+     * @return coordinatesY
+     */
     public Integer getCoordinatesY(){
         Integer coordinatesY;
         while (true) {
@@ -81,6 +105,11 @@ public class ConsoleManager {
         }
         return coordinatesY;
     }
+
+    /**
+     * Возвращает рост из консоли
+     * @return height
+     */
     public Double getHeight(){
         Double height;
         while (true) {
@@ -102,6 +131,10 @@ public class ConsoleManager {
         return height;
     }
 
+    /**
+     * Возвращает цвет глаз из консоли
+     * @return eyeColor {@link ColorE}
+     */
     public ColorE getEyeColor(){
         ColorE eyeColor;
         while (true) {
@@ -122,6 +155,10 @@ public class ConsoleManager {
         return eyeColor;
     }
 
+    /**
+     * Возвращает цвет волос из консоли
+     * @return hairColor {@link ColorH}
+     */
     public ColorH getHairColor(){
         ColorH hairColor;
         while (true) {
@@ -142,6 +179,10 @@ public class ConsoleManager {
         return hairColor;
     }
 
+    /**
+     * Возвращает национальность из консоли
+     * @return nationality {@link Country}
+     */
     public Country getNationality(){
         Country nationality;
         while (true) {
@@ -162,6 +203,10 @@ public class ConsoleManager {
         return nationality;
     }
 
+    /**
+     * Возвращает координату Х местопложения из консоли
+     * @return locationX
+     */
     public Integer getLocationX(){
         Integer locationX;
         while (true) {
@@ -182,6 +227,10 @@ public class ConsoleManager {
         return locationX;
     }
 
+    /**
+     * Возвращает координату Y местопложения из консоли
+     * @return locationY
+     */
     public Double getLocationY(){
         Double locationY;
         while (true) {
@@ -202,6 +251,10 @@ public class ConsoleManager {
         return locationY;
     }
 
+    /**
+     * Возвращает координату Z местопложения из консоли
+     * @return locationZ
+     */
     public Long getLocationZ(){
         Long locationZ;
         while (true) {
@@ -222,6 +275,10 @@ public class ConsoleManager {
         return locationZ;
     }
 
+    /**
+     * Возвращает название местопложения из консоли
+     * @return locationName
+     */
     public String getLocationName(){
         String locationName;
         while (true) {
@@ -239,6 +296,10 @@ public class ConsoleManager {
         return locationName;
     }
 
+    /**
+     * Возвращает значение id из консоли
+     * @return id
+     */
     public int getID(){
         System.out.print("Введите значение id: ");
         int id;
@@ -264,6 +325,10 @@ public class ConsoleManager {
         return id;
     }
 
+    /**
+     * Возвращает объект класса {@link Location} из консоли
+     * @return объект класса {@link Location}
+     */
     public Location getLocationFromConsole(){
         Location location = new Location(getLocationX(),getLocationY(),getLocationZ(),getLocationName());
         return location;

@@ -9,6 +9,9 @@ import java.io.FileNotFoundException;
 import java.util.Deque;
 import java.util.Scanner;
 
+/**
+ * Класс, реализующий работу команд
+ */
 public class CommandManager {
     private CollectionManager collectionManager;
     private Scanner scanner;
@@ -18,6 +21,13 @@ public class CommandManager {
     private boolean ifConsole = true;
     private Deque<String> stringDeque;
 
+    /**
+     * Конструктор класса
+     * @param collectionManager менеджер коллекций
+     * @param scanner консоль
+     * @param commands список всех команд
+     * @param stringDeque очередь команд из скрипта
+     */
     public CommandManager(CollectionManager collectionManager, Scanner scanner, Command[] commands, Deque<String> stringDeque) {
         this.collectionManager = collectionManager;
         this.scanner = scanner;
@@ -25,6 +35,9 @@ public class CommandManager {
         this.stringDeque=stringDeque;
     }
 
+    /**
+     * Инициализация основного файла коллекции
+     */
     public void fileMode() {
         System.out.print("Введите переменную окружения, для заполнения коллекции из файла и сохранения коллекции (exit - выход из ввода):");
         while (true) {
@@ -58,6 +71,9 @@ public class CommandManager {
         consoleMode();
     }
 
+    /**
+     * Работа с командами введенными из консоли
+     */
     public void consoleMode(){
         ifConsole=true;
         boolean found = false;
@@ -83,6 +99,9 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Работа с командами из скрипта
+     */
     public void scriptMode() {
         boolean noExit = true;
         ifConsole = false;
