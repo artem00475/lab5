@@ -36,16 +36,16 @@ public class FileManager {
         }
         try {
             int idP;
-            Integer coordinatesXP;
-            Integer coordinatesYP;
+            int coordinatesXP;
+            int coordinatesYP;
             Date dateP;
-            Double heightP;
+            double heightP;
             ColorE eyeColorP;
             ColorH hairColorP;
             Country nationalityP;
-            Integer locationXP;
-            Double locationYP;
-            Long locationZP;
+            int locationXP;
+            double locationYP;
+            long locationZP;
             JSONObject rootJSONObject = (JSONObject) parser.parse(str.toString());
             JSONArray personJSONArray = (JSONArray) rootJSONObject.get("persons");
             int index = 0;
@@ -53,7 +53,7 @@ public class FileManager {
                 index++;
                 try {
                     JSONObject personsJSONObject = (JSONObject) personsObject;
-                    if (((String) personsJSONObject.get(tags[0])).equals("")) {
+                    if (personsJSONObject.get(tags[0]).equals("")) {
                         throw new IdException("У элемента отсутствует id");
                     }
                     try {
@@ -61,11 +61,11 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new IdException("В поле id нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[1])).equals("")) {
+                    if (personsJSONObject.get(tags[1]).equals("")) {
                         throw new NameException("У элемента отсутсвует поле name");
                     }
                     String nameP = (String) personsJSONObject.get(tags[1]);
-                    if (((String) personsJSONObject.get(tags[2])).equals("")) {
+                    if (personsJSONObject.get(tags[2]).equals("")) {
                         throw new CoordinatesException("У элемента отсутствует поле coordinatesX");
                     }
                     try {
@@ -73,7 +73,7 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new CoordinatesException("В поле coordinatesX нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[3])).equals("")) {
+                    if (personsJSONObject.get(tags[3]).equals("")) {
                         throw new CoordinatesException("У элемента отсутствует поле coordinatesY");
                     }
                     try {
@@ -81,7 +81,7 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new CoordinatesException("В поле coordinatesX нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[4])).equals("")) {
+                    if (personsJSONObject.get(tags[4]).equals("")) {
                         throw new DateException("У элемента отсутствует поле date");
                     }
                     try {
@@ -89,7 +89,7 @@ public class FileManager {
                     } catch (java.text.ParseException e) {
                         throw new DateException("Ошибка в формате даты");
                     }
-                    if (((String) personsJSONObject.get(tags[5])).equals("")) {
+                    if (personsJSONObject.get(tags[5]).equals("")) {
                         throw new HeightException("У элемента отсутствует поле height");
                     }
                     try {
@@ -97,7 +97,7 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new HeightException("В поле height нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[6])).equals("")) {
+                    if (personsJSONObject.get(tags[6]).equals("")) {
                         throw new EyeColorException("У элемента отсутствует поле eyeColor");
                     }
                     try {
@@ -106,7 +106,7 @@ public class FileManager {
                     } catch (IllegalArgumentException e) {
                         throw new EyeColorException("Некорректное значение поля eyeColor");
                     }
-                    if (((String) personsJSONObject.get(tags[7])).equals("")) {
+                    if (personsJSONObject.get(tags[7]).equals("")) {
                         throw new HairColorException("У элемента отсутствует поле hairColor");
                     }
                     try {
@@ -115,7 +115,7 @@ public class FileManager {
                     } catch (IllegalArgumentException e) {
                         throw new HairColorException("Некорректное значение поля hairColor");
                     }
-                    if (((String) personsJSONObject.get(tags[8])).equals("")) {
+                    if (personsJSONObject.get(tags[8]).equals("")) {
                         throw new NationalityException("У элемента отсутствует поле nationality");
                     }
                     try {
@@ -124,7 +124,7 @@ public class FileManager {
                     } catch (IllegalArgumentException e) {
                         throw new NationalityException("Некорректное значение поля nationality");
                     }
-                    if (((String) personsJSONObject.get(tags[9])).equals("")) {
+                    if (personsJSONObject.get(tags[9]).equals("")) {
                         throw new LocationException("У элемента отсутствует поле locationX");
                     }
                     try {
@@ -132,7 +132,7 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new LocationException("В поле locationX нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[10])).equals("")) {
+                    if (personsJSONObject.get(tags[10]).equals("")) {
                         throw new LocationException("У элемента отсутствует поле locationY");
                     }
                     try {
@@ -140,7 +140,7 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new LocationException("В поле locationY нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[11])).equals("")) {
+                    if (personsJSONObject.get(tags[11]).equals("")) {
                         throw new LocationException("У элемента отсутствует поле locationZ");
                     }
                     try {
@@ -148,7 +148,7 @@ public class FileManager {
                     } catch (NumberFormatException e) {
                         throw new LocationException("В поле locationZ нечисловое значение");
                     }
-                    if (((String) personsJSONObject.get(tags[12])).equals("")) {
+                    if (personsJSONObject.get(tags[12]).equals("")) {
                         throw new LocationException("У элемента отсутствует поле locationName");
                     }
                     String locationNameP = (String) personsJSONObject.get(tags[12]);
@@ -172,7 +172,7 @@ public class FileManager {
         for (Person person : personQueue){
             str.append("    {\n");
             for (int i=0;i< tags.length;i++){
-                str.append("        \""+tags[i]+"\" : \""+person.getPersonFields().get(i)+"\",\n");
+                str.append("        \"").append(tags[i]).append("\" : \"").append(person.getPersonFields().get(i)).append("\",\n");
             }
             str.deleteCharAt(str.lastIndexOf(","));
             str.append("    },\n");

@@ -8,9 +8,9 @@ import ru.itmo.lab5.file.ScriptManager;
  * Команда, выводящая количество элементов, значение которых больше заданного
  */
 public class CountGreaterThanLocationCommand implements Command {
-    private ConsoleManager consoleManager;
-    private CollectionManager collectionManager;
-    private ScriptManager scriptManager;
+    private final ConsoleManager consoleManager;
+    private final CollectionManager collectionManager;
+    private final ScriptManager scriptManager;
 
     /**
      * Конструктор, задающий параметры объекта

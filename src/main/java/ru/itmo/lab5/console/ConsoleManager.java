@@ -1,6 +1,5 @@
 package ru.itmo.lab5.console;
 
-import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.exceptions.*;
 import ru.itmo.lab5.person.*;
 
@@ -11,18 +10,14 @@ import java.util.Scanner;
  * Класс, реализующий ввод с консоли
  */
 public class ConsoleManager {
-    private Scanner scanner;
-    private CollectionManager collectionManager;
+    private final Scanner scanner;
 
     /**
      * Конструктор, задающий параметры объекта
      * @param scanner консоль
-     * @param collectionManager менеджер коллекций
-     * @see CollectionManager
      */
-    public ConsoleManager(Scanner scanner, CollectionManager collectionManager){
+    public ConsoleManager(Scanner scanner){
         this.scanner = scanner;
-        this.collectionManager = collectionManager;
     }
 
 
@@ -31,9 +26,8 @@ public class ConsoleManager {
      * @return объект класса {@link Person}
      */
     public Person getPersonFromConsole(){
-            System.out.print("Введите данные элемента:");
-            Person person = new Person(getName(), getCoordinatesX(), getCoordinatesY(), getHeight(), getEyeColor(), getHairColor(), getNationality(), getLocationX(), getLocationY(), getLocationZ(), getLocationName());
-            return person;
+            System.out.println("Введите данные элемента:");
+        return new Person(getName(), getCoordinatesX(), getCoordinatesY(), getHeight(), getEyeColor(), getHairColor(), getNationality(), getLocationX(), getLocationY(), getLocationZ(), getLocationName());
     }
 
 
@@ -52,7 +46,7 @@ public class ConsoleManager {
                 }
                 name = scanned;
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return name;
     }
@@ -62,7 +56,7 @@ public class ConsoleManager {
      * @return coordinatesX
      */
     public Integer getCoordinatesX(){
-        Integer coordinatesX;
+        int coordinatesX;
         while (true) {
             try {
                 System.out.print("Введите поле coordinatesX: ");
@@ -77,7 +71,7 @@ public class ConsoleManager {
                 }
                 if (coordinatesX>408) {throw new CoordinatesException("Значение не должно превышать 408");}
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return coordinatesX;
     }
@@ -87,7 +81,7 @@ public class ConsoleManager {
      * @return coordinatesY
      */
     public Integer getCoordinatesY(){
-        Integer coordinatesY;
+        int coordinatesY;
         while (true) {
             try {
                 System.out.print("Введите поле coordinatesY: ");
@@ -102,7 +96,7 @@ public class ConsoleManager {
                 }
                 if (!(coordinatesY>-806)) {throw new CoordinatesException("Значение должно быть больше -806");}
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return coordinatesY;
     }
@@ -112,7 +106,7 @@ public class ConsoleManager {
      * @return height
      */
     public Double getHeight(){
-        Double height;
+        double height;
         while (true) {
             try {
                 System.out.print("Введите поле height: ");
@@ -127,7 +121,7 @@ public class ConsoleManager {
                 }
                 if (!(height >0)) {throw new HeightException("Значение должно быть больше 0");}
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return height;
     }
@@ -151,7 +145,7 @@ public class ConsoleManager {
                     throw new EyeColorException("Некорректное значение поля eyeColor");
                 }
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return eyeColor;
     }
@@ -175,7 +169,7 @@ public class ConsoleManager {
                     throw new EyeColorException("Некорректное значение поля hairColor");
                 }
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return hairColor;
     }
@@ -199,7 +193,7 @@ public class ConsoleManager {
                     throw new EyeColorException("Некорректное значение поля nationality");
                 }
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return nationality;
     }
@@ -209,7 +203,7 @@ public class ConsoleManager {
      * @return locationX
      */
     public Integer getLocationX(){
-        Integer locationX;
+        int locationX;
         while (true) {
             try {
                 System.out.print("Введите поле locationX: ");
@@ -223,7 +217,7 @@ public class ConsoleManager {
                     throw new CoordinatesException("В поле locationX нечисловое значение");
                 }
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return locationX;
     }
@@ -233,7 +227,7 @@ public class ConsoleManager {
      * @return locationY
      */
     public Double getLocationY(){
-        Double locationY;
+        double locationY;
         while (true) {
             try {
                 System.out.print("Введите поле locationY: ");
@@ -247,7 +241,7 @@ public class ConsoleManager {
                     throw new CoordinatesException("В поле locationY нечисловое значение");
                 }
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return locationY;
     }
@@ -257,7 +251,7 @@ public class ConsoleManager {
      * @return locationZ
      */
     public Long getLocationZ(){
-        Long locationZ;
+        long locationZ;
         while (true) {
             try {
                 System.out.print("Введите поле locationZ: ");
@@ -271,7 +265,7 @@ public class ConsoleManager {
                     throw new CoordinatesException("В поле locationZ нечисловое значение");
                 }
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return locationZ;
     }
@@ -292,7 +286,7 @@ public class ConsoleManager {
                 locationName = scanned;
                 if (locationName.length()>374) {throw new LocationException("Длина поля locationName не должна превышать 374");}
                 break;
-            }catch (Exception e) {}
+            }catch (Exception ignored) {}
         }
         return locationName;
     }
@@ -331,8 +325,7 @@ public class ConsoleManager {
      * @return объект класса {@link Location}
      */
     public Location getLocationFromConsole(){
-        Location location = new Location(getLocationX(),getLocationY(),getLocationZ(),getLocationName());
-        return location;
+        return new Location(getLocationX(),getLocationY(),getLocationZ(),getLocationName());
     }
 
 }

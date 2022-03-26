@@ -10,9 +10,9 @@ import java.util.Scanner;
  * Команда, выполняющая скрипт
  */
 public class ExcecuteCommand implements Command {
-    private Scanner scanner;
-    private ScriptManager scriptManager;
-    private Deque<String> deque;
+    private final Scanner scanner;
+    private final ScriptManager scriptManager;
+    private final Deque<String> deque;
 
     /**
      * Конструктор, задающий параметры объекта
@@ -45,8 +45,8 @@ public class ExcecuteCommand implements Command {
     @Override
     public void execute(Boolean argument) {
         if (argument){
+            System.out.print("Введите полное имя файла: ");
             try {
-                System.out.print("Введите полное имя файла: ");
                 String path = scanner.nextLine();
                 File file = new File(path);
                 scriptManager.addFile(file);

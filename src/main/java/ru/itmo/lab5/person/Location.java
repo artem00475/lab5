@@ -57,11 +57,7 @@ public class Location {
      * @return boolean
      */
     public boolean compare(Location location){
-        if (x> location.getX()){
-            return true;
-        } else{
-            return false;
-        }
+        return x > location.getX();
     }
 
 

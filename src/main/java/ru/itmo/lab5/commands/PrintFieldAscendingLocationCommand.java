@@ -7,7 +7,7 @@ import ru.itmo.lab5.person.Person;
  * Команда, выводящая значения поля location в порядке возрастания
  */
 public class PrintFieldAscendingLocationCommand implements Command{
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор, задающий параметры объекта

@@ -27,7 +27,7 @@ public class ScriptManager {
 
     /**
      * Считывает скрипт, добавляет команды в очередь команд
-     * @param file
+     * @param file файл
      */
     public void addFile(File file){
         this.file = file;
@@ -59,15 +59,15 @@ public class ScriptManager {
     public Person getPersonFromScript(){
         String scanned;
         String name;
-        Integer coordinatesX;
-        Integer coordinatesY;
-        Double height;
+        int coordinatesX;
+        int coordinatesY;
+        double height;
         ColorE eyeColor;
         ColorH hairColor;
         Country nationality;
-        Integer locationX;
-        Double locationY;
-        Long locationZ;
+        int locationX;
+        double locationY;
+        long locationZ;
         String locationName;
             scanned = stringDeque.remove();
             if (scanned.equals("")) {
@@ -169,9 +169,9 @@ public class ScriptManager {
      * @return объект класса {@link Location}
      */
     public Location getLocationFromScript(){
-        Integer locationX;
-        Double locationY;
-        Long locationZ;
+        int locationX;
+        double locationY;
+        long locationZ;
         String locationName;
         String scanned = stringDeque.remove();
         if (scanned.equals("")) {
@@ -240,7 +240,7 @@ public class ScriptManager {
         try {
             id = Integer.parseInt(scanned);
         } catch (NumberFormatException e) {
-            throw new CoordinatesException("Введено нечисловое значение");
+            throw new IdException("Введено нечисловое значение");
         }
         if (!Person.getIdArray().contains(id)){
             throw new IdException("Элемента с таким id нет в коллекции");

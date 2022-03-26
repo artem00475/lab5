@@ -13,13 +13,13 @@ import java.util.Scanner;
  * Класс, реализующий работу команд
  */
 public class CommandManager {
-    private CollectionManager collectionManager;
-    private Scanner scanner;
-    private Command[] commands;
+    private final CollectionManager collectionManager;
+    private final Scanner scanner;
+    private final Command[] commands;
     private String path;
     private boolean ifEmpty = false;
     private boolean ifConsole = true;
-    private Deque<String> stringDeque;
+    private final Deque<String> stringDeque;
 
     /**
      * Конструктор, задающий параметры объекта
@@ -52,7 +52,7 @@ public class CommandManager {
                     path = scannedPath;
                     path = System.getenv(scannedPath);
                     String[] checkPath = path.split(";");
-                    if (checkPath.length == 1 && path.substring(path.length() - 5, path.length()).equals(".json")) {
+                    if (checkPath.length == 1 && path.startsWith(".json", path.length() - 5)) {
                         try {
                             File file = new File(path);
                             Scanner s = new Scanner(file);
@@ -61,7 +61,7 @@ public class CommandManager {
                         break;
                     }else if (checkPath.length > 1){
                         throw new FileException("Переменная окружения содержит больше одного пути");
-                    }else if (!path.substring(path.length() - 5, path.length()).equals(".json")){
+                    }else if (!path.startsWith(".json", path.length() - 5)){
                         throw new FileException("Указан путь не до json-файла");
                     }
                 }
@@ -95,8 +95,8 @@ public class CommandManager {
                             command.execute(ifConsole);
                         }
                     }
-                }
-            }if (!found) {System.out.println("Команда введениа неверно, или такой команды не существует");}
+                }if (!found) {System.out.println("Команда введениа неверно, или такой команды не существует");}
+            }
         }
     }
 
@@ -129,7 +129,7 @@ public class CommandManager {
                         }
                     }
                 }
-            }
-        }else {if (noExit) {consoleMode();}}
+            }if (noExit) {consoleMode();}
+        }
     }
 }

@@ -1,22 +1,20 @@
 package ru.itmo.lab5;
 
-import org.json.simple.parser.ParseException;
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.commands.*;
 import ru.itmo.lab5.console.CommandManager;
 import ru.itmo.lab5.console.ConsoleManager;
 import ru.itmo.lab5.file.ScriptManager;
 
-import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Main
 {
-    public static void main( String[] args ) throws FileNotFoundException, ParseException, java.text.ParseException {
+    public static void main( String[] args ) {
         Scanner scanner = new Scanner(System.in);
         Deque<String> scriptQueue = new LinkedList<>();
         CollectionManager collectionManager = new CollectionManager();
-        ConsoleManager consoleManager = new ConsoleManager(scanner,collectionManager);
+        ConsoleManager consoleManager = new ConsoleManager(scanner);
         ScriptManager scriptManager = new ScriptManager(scriptQueue);
 
         Command[] commands = {

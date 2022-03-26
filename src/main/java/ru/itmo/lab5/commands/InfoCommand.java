@@ -7,7 +7,7 @@ import ru.itmo.lab5.collection.CollectionManager;
  * Команда, выводящая информацию о коллекции
  */
 public class InfoCommand implements Command{
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор, задающий параметры объекта

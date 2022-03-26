@@ -15,9 +15,9 @@ import java.util.Scanner;
  * Класс, работающий с коллекцией
  */
 public class CollectionManager {
-    private Queue<Person> collection;
-    private String initDate;
-    private FileManager fileManager;
+    private final Queue<Person> collection;
+    private final String initDate;
+    private final FileManager fileManager;
 
     /**
      * Конструктор, задающий параметры объекта
@@ -26,8 +26,7 @@ public class CollectionManager {
     public CollectionManager() {
         collection = new PriorityQueue(1, new PersonComporator());
         initDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss dd.MM.yyyy"));
-        FileManager fileManager = new FileManager();
-        this.fileManager=fileManager;
+        this.fileManager= new FileManager();
     }
 
     /**
@@ -48,7 +47,7 @@ public class CollectionManager {
 
     @Override
     public String toString() {
-        StringBuilder personList = new StringBuilder("");
+        StringBuilder personList = new StringBuilder();
         for (Person person : collection) {
             personList.append("\n").append(person);
         }
@@ -104,16 +103,10 @@ public class CollectionManager {
      * @param id id элемента
      */
     public void removeElementByID(int id){
-        Queue<Person> collection1 = new PriorityQueue<>(1,new PersonComporator());
-        while (!collection.isEmpty()){
-            Person person = collection.remove();
+        for (Person person : collection){
             if (person.getID() == id){
+                collection.remove(person);
                 Person.removeFromIdArray(id);
-                for (Person per : collection1){
-                    collection.add(per);
-                }break;
-            }else{
-                collection1.add(person);
             }
         }
     }
@@ -123,7 +116,7 @@ public class CollectionManager {
      */
     public void removeAll(){
         Person.removeAllFromIdArray();
-        collection.removeAll(collection);
+        collection.clear();
 
     }
 
@@ -155,11 +148,7 @@ public class CollectionManager {
         for (Person p : collection){
             h=p.getHeight();
         }
-        if (person.getHeight()>h){
-            return true;
-        } else{
-            return false;
-        }
+        return person.getHeight() > h;
 
     }
 

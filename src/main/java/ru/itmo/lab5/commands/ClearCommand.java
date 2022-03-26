@@ -6,7 +6,7 @@ import ru.itmo.lab5.collection.CollectionManager;
  * Команда, очищающая коллекцию
  */
 public class ClearCommand implements Command {
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор, задающий параметры объекта

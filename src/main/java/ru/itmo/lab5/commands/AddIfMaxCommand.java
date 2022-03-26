@@ -9,9 +9,9 @@ import ru.itmo.lab5.person.Person;
  * Команда, добавляющая элемент, если он больше максимального
  */
 public class AddIfMaxCommand implements Command{
-    private ConsoleManager consoleManager;
-    private CollectionManager collectionManager;
-    private ScriptManager scriptManager;
+    private final ConsoleManager consoleManager;
+    private final CollectionManager collectionManager;
+    private final ScriptManager scriptManager;
 
     /**
      * Конструктор, задающий параметры объекта

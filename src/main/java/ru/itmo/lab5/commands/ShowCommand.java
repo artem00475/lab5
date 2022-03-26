@@ -7,7 +7,7 @@ import ru.itmo.lab5.person.Person;
  * Команда, выводящая все элементы коллекции
  */
 public class ShowCommand implements Command{
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор, задающий параметры объекта

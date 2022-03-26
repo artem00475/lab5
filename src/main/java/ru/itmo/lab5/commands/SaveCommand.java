@@ -6,7 +6,7 @@ import ru.itmo.lab5.collection.CollectionManager;
  * Команда, сохраняющая коллекцию в файл
  */
 public class SaveCommand implements Command{
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор, задающий параметры объекта

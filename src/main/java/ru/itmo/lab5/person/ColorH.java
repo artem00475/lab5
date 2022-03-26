@@ -7,5 +7,5 @@ public enum ColorH {
     RED,
     BLACK,
     ORANGE,
-    BROWN;
+    BROWN
 }

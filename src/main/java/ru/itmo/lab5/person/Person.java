@@ -21,7 +21,7 @@ public class Person {
     private ColorH hairColor; //Поле не может быть null
     private Country nationality; //Поле может быть null
     private Location location; //Поле может быть null
-    private static LinkedList<Integer> idArray = new LinkedList<Integer>();
+    private static final LinkedList<Integer> idArray = new LinkedList<>();
 
 
     /**
@@ -44,11 +44,12 @@ public class Person {
         if (idArray.isEmpty()){
            idArray.add(id);
         } else {
-            for (int i = 0; i<idArray.size(); i++){
-                if(idArray.get(i).equals(id)){
+            for (Integer integer : idArray) {
+                if (integer.equals(id)) {
                     throw new IdException("Человек с таким id уже есть в файле.");
                 }
-            } idArray.add(id);
+            }
+            idArray.add(id);
         }
         if (id<=0){throw new IdException("Id должен быть больше 0");}
        this.id  = id;
@@ -230,7 +231,7 @@ public class Person {
      * Удаляет id из списка всех id
      * @param id id удаленного элемента
      */
-    public static void removeFromIdArray(int id){idArray.remove(id);}
+    public static void removeFromIdArray(int id){idArray.remove((Integer) id);}
 
     /**
      * Очищает список всех id

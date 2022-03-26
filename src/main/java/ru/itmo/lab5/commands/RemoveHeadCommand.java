@@ -6,7 +6,7 @@ import ru.itmo.lab5.collection.CollectionManager;
  * Команда, удаляющая первый элемент в очереди
  */
 public class RemoveHeadCommand implements Command{
-    private CollectionManager collectionManager;
+    private final CollectionManager collectionManager;
 
     /**
      * Конструктор, задающий параметры объекта
