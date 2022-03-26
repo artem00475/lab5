@@ -60,7 +60,7 @@ public class CollectionManager {
      * @param string путь к файле
      * @throws FileNotFoundException если файл, не найден
      */
-    public void parseFileToCollection(Scanner scanner, String string) throws FileNotFoundException {
+    public void parseFileToCollection(Scanner scanner, String string) {
         fileManager.parseFile(collection,scanner,string);
     }
 

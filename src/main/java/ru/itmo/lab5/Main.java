@@ -8,8 +8,7 @@ import ru.itmo.lab5.file.ScriptManager;
 
 import java.util.*;
 
-public class Main
-{
+public class Main {
     public static void main( String[] args ) {
         Scanner scanner = new Scanner(System.in);
         Deque<String> scriptQueue = new LinkedList<>();

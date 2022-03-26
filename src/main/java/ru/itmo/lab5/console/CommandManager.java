@@ -41,6 +41,7 @@ public class CommandManager {
      */
     public void fileMode() {
         Boolean fileFound=false;
+        Scanner s;
         System.out.print("Введите переменную окружения, для заполнения коллекции из файла и сохранения коллекции (exit - выход из ввода):");
         while (true) {
             try {
@@ -54,12 +55,17 @@ public class CommandManager {
                     path = System.getenv(scannedPath);
                     String[] checkPath = path.split(";");
                     if (checkPath.length == 1) {
-                        try {
+                        if (path.equals("")){throw new FileException("Ничего не введено");}
                             File file = new File(path);
-                            Scanner s = new Scanner(file);
-                            collectionManager.parseFileToCollection(s,path);
-                            fileFound=true;
+                        //if (file.isDirectory()) {throw new FileException("Вы ввели директорию, нужно ввести файл");}
+                        //if (path.substring(0,5).equals("/dev/")){throw new FileException("Вы ввели псевдоустройство, нужно ввести файл");}
+                        if (!file.isFile()) {throw new FileException("Введен не файл");}
+                        s=new Scanner(file);
+
+                        try {s = new Scanner(file);
                         }catch (FileNotFoundException e) {throw new FileException("Файл не существует");}
+                        collectionManager.parseFileToCollection(s,path);
+                        fileFound=true;
                         break;
                     }else if (checkPath.length > 1){
                         throw new FileException("Переменная окружения содержит больше одного пути");
