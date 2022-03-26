@@ -10,14 +10,25 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
+/**
+ * Класс, работающий со скриптом из файла
+ */
 public class ScriptManager {
     private File file;
     private Deque<String> stringDeque;
 
+    /**
+     * Конструтор, задающий параметры класса
+     * @param stringDeque очередь для команд из скриптов
+     */
     public ScriptManager(Deque<String> stringDeque){
         this.stringDeque=stringDeque;
     }
 
+    /**
+     * Считывает скрипт, добавляет команды в очередь команд
+     * @param file
+     */
     public void addFile(File file){
         this.file = file;
         try (Scanner f = new Scanner(file)) {
@@ -41,6 +52,10 @@ public class ScriptManager {
         }
     }
 
+    /**
+     * Создает объект класса Person из скрипта, возвращет объект
+     * @return объект класса {@link Person}
+     */
     public Person getPersonFromScript(){
         String scanned;
         String name;
@@ -149,6 +164,10 @@ public class ScriptManager {
         return person;
     }
 
+    /**
+     * Создает объект класса Location из скрипта, возвращает объект
+     * @return объект класса {@link Location}
+     */
     public Location getLocationFromScript(){
         Integer locationX;
         Double locationY;
@@ -190,6 +209,10 @@ public class ScriptManager {
         return location;
     }
 
+    /**
+     * Возвращает значение цвета глаз из скрипта
+     * @return значение {@link ColorE}
+     */
     public ColorE getEyeColor(){
         ColorE eyeColor;
         String scanned = stringDeque.remove();
@@ -204,6 +227,10 @@ public class ScriptManager {
         return eyeColor;
     }
 
+    /**
+     * Возвращает значение id из скрипта
+     * @return id
+     */
     public int getID(){
         int id;
         String scanned = stringDeque.remove();

@@ -14,13 +14,19 @@ import java.util.Locale;
 import java.util.Queue;
 import java.util.Scanner;
 
+/**
+ * Класс, работающий с файлом коллекции
+ */
 public class FileManager {
     private String[] tags = new String[]{"id", "name", "coordinatesX", "coordinatesY","date", "height", "eyeColor", "hairColor", "nationality", "locationX", "locationY", "locationZ", "locationName" };
     private String scanPath;
 
-    public FileManager(){}
-
-
+    /**
+     * Считывает данные из файла и добавляет элементы в коллекцию
+     * @param personQueue коллекция
+     * @param s данные из файла
+     * @param scanPath путь до файла
+     */
     public void parseFile(Queue<Person> personQueue, Scanner s, String scanPath) {
         this.scanPath=scanPath;
         JSONParser parser = new JSONParser();
@@ -157,6 +163,10 @@ public class FileManager {
         }
     }
 
+    /**
+     * Сохраняет элементы коллекции в файл
+     * @param personQueue коллекция
+     */
     public void saveToFile(Queue<Person> personQueue) {
         StringBuilder str = new StringBuilder("{\"persons\" : [\n");
         for (Person person : personQueue){
