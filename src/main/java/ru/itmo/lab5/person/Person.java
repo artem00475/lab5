@@ -101,6 +101,8 @@ public class Person {
     public static LinkedList<Integer> getIdArray(){
         return idArray;
     }
+    public static void removeFromIdArray(int id){idArray.remove(id);}
+    public static void removeAllFromIdArray(){idArray.clear();}
 
     }
 

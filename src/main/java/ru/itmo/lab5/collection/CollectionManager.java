@@ -39,7 +39,7 @@ public class CollectionManager {
         return personList.toString();
     }
 
-    public void pasreFileToCollection(Scanner scanner, String string) throws FileNotFoundException, ParseException, java.text.ParseException {
+    public void pasreFileToCollection(Scanner scanner, String string) throws FileNotFoundException {
         fileManager.parseFile(collection,scanner,string);
     }
     public void addElement(Person person){
@@ -72,6 +72,7 @@ public class CollectionManager {
         while (!collection.isEmpty()){
             Person person = collection.remove();
             if (person.getID() == id){
+                Person.removeFromIdArray(id);
                 for (Person per : collection1){
                     collection.add(per);
                 }break;
@@ -82,7 +83,9 @@ public class CollectionManager {
     }
 
     public void removeAll(){
+        Person.removeAllFromIdArray();
         collection.removeAll(collection);
+
     }
 
     public void saveCollection() {
@@ -90,7 +93,9 @@ public class CollectionManager {
     }
 
     public Person removeFirstElement(){
-        return collection.remove();
+        Person person = collection.remove();
+        Person.removeFromIdArray(person.getID());
+        return person;
     }
 
     public boolean ifMore(Person person){
@@ -113,6 +118,7 @@ public class CollectionManager {
         Queue<Person> collection1 = new PriorityQueue<>(1, new PersonComporator());
         for (Person p : collection){
             if (h<p.getHeight()){
+                Person.removeFromIdArray(p.getID());
                 collection1.add(p);
                 found=true;
             }
