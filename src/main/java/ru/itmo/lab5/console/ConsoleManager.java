@@ -18,6 +18,7 @@ public class ConsoleManager {
      * Конструктор класса
      * @param scanner консоль
      * @param collectionManager менеджер коллекций
+     * @see CollectionManager
      */
     public ConsoleManager(Scanner scanner, CollectionManager collectionManager){
         this.scanner = scanner;

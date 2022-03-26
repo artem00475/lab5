@@ -24,6 +24,7 @@ public class CommandManager {
     /**
      * Конструктор класса
      * @param collectionManager менеджер коллекций
+     * @see CollectionManager
      * @param scanner консоль
      * @param commands список всех команд
      * @param stringDeque очередь команд из скрипта
