@@ -54,6 +54,7 @@ public class ConsoleManager {
                 } catch (NumberFormatException e) {
                     throw new CoordinatesException("В поле coordinatesX нечисловое значение");
                 }
+                if (coordinatesX>408) {throw new CoordinatesException("Значение не должно превышать 408");}
                 break;
             }catch (Exception e) {}
         }
@@ -74,6 +75,7 @@ public class ConsoleManager {
                 } catch (NumberFormatException e) {
                     throw new CoordinatesException("В поле coordinatesY нечисловое значение");
                 }
+                if (!(coordinatesY>-806)) {throw new CoordinatesException("Значение должно быть больше -806");}
                 break;
             }catch (Exception e) {}
         }
@@ -86,13 +88,14 @@ public class ConsoleManager {
                 System.out.print("Введите поле height: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new CoordinatesException("У элемента отсутствует поле height");
+                    throw new HeightException("У элемента отсутствует поле height");
                 }
                 try {
                     height = Double.parseDouble(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле height нечисловое значение");
+                    throw new HeightException("В поле height нечисловое значение");
                 }
+                if (!(height >0)) {throw new HeightException("Значение должно быть больше 0");}
                 break;
             }catch (Exception e) {}
         }
@@ -229,6 +232,7 @@ public class ConsoleManager {
                     throw new NameException("У элемента отсутсвует поле locationName");
                 }
                 locationName = scanned;
+                if (locationName.length()>374) {throw new LocationException("Длина поля locationName не должна превышать 374");}
                 break;
             }catch (Exception e) {}
         }
