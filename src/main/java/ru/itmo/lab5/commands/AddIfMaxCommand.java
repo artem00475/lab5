@@ -50,7 +50,7 @@ public class AddIfMaxCommand implements Command{
                 } else {
                     System.out.println("Значение элемента не превышает наибольшего элемента коллекции");
                 }
-            }catch (Exception e) {System.out.println("Команда не выполнена");}
+            }catch (Exception e) {System.out.printf("Команда %s не выполнена\n", getName());}
         }
 
     }

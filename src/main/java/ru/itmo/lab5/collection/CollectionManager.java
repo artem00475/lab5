@@ -39,7 +39,7 @@ public class CollectionManager {
         return personList.toString();
     }
 
-    public void pasreFileToCollection(Scanner scanner, String string) throws FileNotFoundException {
+    public void parseFileToCollection(Scanner scanner, String string) throws FileNotFoundException {
         fileManager.parseFile(collection,scanner,string);
     }
     public void addElement(Person person){

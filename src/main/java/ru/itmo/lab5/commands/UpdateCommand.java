@@ -41,7 +41,7 @@ public class UpdateCommand implements Command{
                 int id = scriptManager.getID();
                 collectionManager.updateElement(id, scriptManager.getPersonFromScript());
                 System.out.println("Элемент успешно оновлен");
-            }catch (Exception e) {System.out.println("Команда не выполнена");}
+            }catch (Exception e) {System.out.printf("Команда %s не выполнена\n", getName());}
         }
     }
 }

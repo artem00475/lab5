@@ -41,7 +41,7 @@ public class ExcecuteCommand implements Command {
                 File file = new File(path);
                 scriptManager.addFile(file);
             }catch (Exception e) {
-                System.out.println("Команда не выполнена");
+                System.out.printf("Команда %s не выполнена\n", getName());
             }
         }else {
             try {
@@ -49,7 +49,7 @@ public class ExcecuteCommand implements Command {
                 File file = new File(path);
                 scriptManager.addFile(file);
             }catch (Exception e) {
-                System.out.println("Команда не выполнена");
+                System.out.printf("Команда %s не выполнена\n", getName());
             }
         }
 

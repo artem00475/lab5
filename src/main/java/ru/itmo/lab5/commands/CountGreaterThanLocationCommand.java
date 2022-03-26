@@ -37,7 +37,7 @@ public class CountGreaterThanLocationCommand implements Command {
         }else {
             try {
                 System.out.println(collectionManager.countGreaterLocation(scriptManager.getLocationFromScript()));
-            }catch (Exception e) {System.out.println("Команда не выполнена");}
+            }catch (Exception e) {System.out.printf("Команда %s не выполнена\n", getName());}
         }
     }
 }

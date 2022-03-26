@@ -39,7 +39,7 @@ public class AddCommand implements Command {
             try {
                 collectionManager.addElement(scriptManager.getPersonFromScript());
                 System.out.println("Элемент успешно добавлен");
-            }catch (Exception e) {System.out.println("Команда не выполнена");}
+            }catch (Exception e) {System.out.printf("Команда %s не выполнена\n", getName());}
         }
     }
 }

@@ -42,7 +42,7 @@ public class FilterLessThanEyeColorCommand implements Command {
                 for (Person person : collectionManager.filterLessThanEyeColor(scriptManager.getEyeColor())) {
                     System.out.println(person.toString());
                 }
-            }catch (Exception e) {System.out.println("Команда не выполнена");}
+            }catch (Exception e) {System.out.printf("Команда %s не выполнена\n", getName());}
         }
     }
 }

@@ -42,7 +42,7 @@ public class CommandManager {
                         try {
                             File file = new File(path);
                             Scanner s = new Scanner(file);
-                            collectionManager.pasreFileToCollection(s,path);
+                            collectionManager.parseFileToCollection(s,path);
                         }catch (FileNotFoundException e) {throw new FileException("Файл не существует");}
                         break;
                     }else if (checkPath.length > 1){
@@ -62,7 +62,7 @@ public class CommandManager {
         ifConsole=true;
         boolean found = false;
         while(true){
-            System.out.print("Введите команду: ");
+            System.out.print("Введите команду (help - список команд): ");
             String com = scanner.nextLine();
             if (com.equals("exit")){break;}
             else {
@@ -90,7 +90,7 @@ public class CommandManager {
             while (true) {
                 String com = stringDeque.removeFirst();
                 if (com.equals("stop")) {
-                    System.out.println("Скрипт выполнен.");
+                    System.out.println("Скрипт выполнен");
                     break;
                 } else if (com.equals("exit")) {
                     noExit=false;

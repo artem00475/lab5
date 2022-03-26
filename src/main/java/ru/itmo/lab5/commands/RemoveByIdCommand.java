@@ -41,7 +41,7 @@ public class RemoveByIdCommand implements Command {
                 int id = scriptManager.getID();
                 collectionManager.removeElementByID(id);
                 System.out.println("Элемент успешно удалён.");
-            }catch (Exception e) {System.out.println("Команда не выполнена");}
+            }catch (Exception e) {System.out.printf("Команда %s не выполнена\n", getName());}
         }
     }
 }

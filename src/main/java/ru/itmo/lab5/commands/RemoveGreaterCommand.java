@@ -45,7 +45,7 @@ public class RemoveGreaterCommand implements Command{
                 try {
                     System.out.println("В коллекции нет элементы, удовлетворяющих условию");
                 } catch (Exception e) {
-                    System.out.println("Команда не выполнена");}
+                    System.out.printf("Команда %s не выполнена\n", getName());}
             }
         }
 
