@@ -1,6 +1,13 @@
 package ru.itmo.lab5.exceptions;
 
+/**
+ * Исключение выбрасывается, если при вводе даты ошибка
+ */
 public class DateException extends RuntimeException{
+    /**
+     * Конструктор создаещий исключение с описанием
+     * @param string описание
+     */
     public DateException(String string){
         super(string);
         System.out.println(string);
