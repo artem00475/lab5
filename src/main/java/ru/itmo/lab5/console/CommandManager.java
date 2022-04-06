@@ -21,18 +21,19 @@ public class CommandManager {
     private boolean ifEmpty = false;
     private boolean ifConsole = true;
     private final Deque<String> stringDeque;
-    private boolean ifDone = false;
     private String scannedPath;
-    private ConsoleManager consoleManager;
+    private final ConsoleManager consoleManager;
     private String com;
 
     /**
      * Конструктор, задающий параметры объекта
      * @param collectionManager менеджер коллекций
      * @see CollectionManager
-     //* @param scanner консоль
+     * @param scanner консоль
      * @param commands список всех команд
      * @param stringDeque очередь команд из скрипта
+     * @param consoleManager менеджер консоли
+     * @see ConsoleManager
      */
     public CommandManager(CollectionManager collectionManager,Scanner scanner,Command[] commands, Deque<String> stringDeque, ConsoleManager consoleManager) {
         this.collectionManager = collectionManager;
@@ -77,7 +78,7 @@ public class CommandManager {
                             if (file.isDirectory()) {
                                 throw new FileException("Вы ввели директорию, нужно ввести файл");
                             }
-                            if (path.length() >= 5 && path.substring(0, 5).equals("/dev/")) {
+                            if (path.length() >= 5 && path.startsWith("/dev/")) {
                                 throw new FileException("Вы ввели псевдоустройство, нужно ввести файл");
                             }
                             if (!file.isFile()) {
