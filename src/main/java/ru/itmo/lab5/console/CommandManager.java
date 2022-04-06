@@ -40,7 +40,6 @@ public class CommandManager {
      * Инициализация основного файла коллекции
      */
     public void fileMode() {
-        Boolean fileFound=false;
         Scanner s;
         System.out.print("Введите переменную окружения, для заполнения коллекции из файла и сохранения коллекции (exit - выход из ввода):");
         while (true) {
@@ -52,27 +51,26 @@ public class CommandManager {
                     break;
                 } else {
                     path = scannedPath;
-                    path = System.getenv(scannedPath);
-                    String[] checkPath = path.split(";");
+                    if (path.equals("")) {throw new FileException("Ничего не введено");}
+                    String[] checkPath;
+                    try {
+                        path = System.getenv(scannedPath);
+                         checkPath = path.split(";");
+                    }catch (NullPointerException e) {throw new FileException("Переменная окружения не существует");}
                     if (checkPath.length == 1) {
-                        if (path.equals("")){throw new FileException("Ничего не введено");}
-                            File file = new File(path);
-                        //if (file.isDirectory()) {throw new FileException("Вы ввели директорию, нужно ввести файл");}
-                        //if (path.substring(0,5).equals("/dev/")){throw new FileException("Вы ввели псевдоустройство, нужно ввести файл");}
-                        if (!file.isFile()) {throw new FileException("Введен не файл");}
-                        s=new Scanner(file);
-
+                        File file = new File(path);
                         try {s = new Scanner(file);
                         }catch (FileNotFoundException e) {throw new FileException("Файл не существует");}
+                        if (file.isDirectory()) {throw new FileException("Вы ввели директорию, нужно ввести файл");}
+                        if (path.length()>=5 && path.substring(0,5).equals("/dev/")){throw new FileException("Вы ввели псевдоустройство, нужно ввести файл");}
+                        if (!file.isFile()) {throw new FileException("Введен не файл");}
                         collectionManager.parseFileToCollection(s,path);
-                        fileFound=true;
                         break;
                     }else if (checkPath.length > 1){
                         throw new FileException("Переменная окружения содержит больше одного пути");
                     }
                 }
-            }catch (Exception ignore) { }
-            if (!fileFound) System.out.print("Введите переменную окружения снова: ");
+            }catch (FileException exception) {System.out.print("Введите переменную окружения снова: ");}
         }
         consoleMode();
     }
