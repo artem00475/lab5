@@ -10,7 +10,7 @@ import java.util.Scanner;
  * Класс, реализующий ввод с консоли
  */
 public class ConsoleManager {
-    private final Scanner scanner;
+    private Scanner scanner;
 
     /**
      * Конструктор, задающий параметры объекта
@@ -22,12 +22,20 @@ public class ConsoleManager {
 
 
     /**
-     * ВОзвращает объект класса {@link Person} из консоли
+     * Возвращает объект класса {@link Person} из консоли
      * @return объект класса {@link Person}
      */
     public Person getPersonFromConsole(){
             System.out.println("Введите данные элемента:");
         return new Person(getName(), getCoordinatesX(), getCoordinatesY(), getHeight(), getEyeColor(), getHairColor(), getNationality(), getLocationX(), getLocationY(), getLocationZ(), getLocationName());
+    }
+
+    /**
+     * Изменяет поток ввода на полученный
+     * @param scanner поток ввода
+     */
+    public void changeScanner(Scanner scanner){
+        this.scanner=scanner;
     }
 
 
@@ -46,7 +54,7 @@ public class ConsoleManager {
                 }
                 name = scanned;
                 break;
-            }catch (Exception ignored) {}
+            }catch (NameException ignored) {}
         }
         return name;
     }
@@ -71,7 +79,7 @@ public class ConsoleManager {
                 }
                 if (coordinatesX>408) {throw new CoordinatesException("Значение не должно превышать 408");}
                 break;
-            }catch (Exception ignored) {}
+            }catch (CoordinatesException ignored) {}
         }
         return coordinatesX;
     }
@@ -96,7 +104,7 @@ public class ConsoleManager {
                 }
                 if (!(coordinatesY>-806)) {throw new CoordinatesException("Значение должно быть больше -806");}
                 break;
-            }catch (Exception ignored) {}
+            }catch (CoordinatesException ignored) {}
         }
         return coordinatesY;
     }
@@ -121,7 +129,7 @@ public class ConsoleManager {
                 }
                 if (!(height >0)) {throw new HeightException("Значение должно быть больше 0");}
                 break;
-            }catch (Exception ignored) {}
+            }catch (HeightException ignored) {}
         }
         return height;
     }
@@ -145,7 +153,7 @@ public class ConsoleManager {
                     throw new EyeColorException("Некорректное значение поля eyeColor");
                 }
                 break;
-            }catch (Exception ignored) {}
+            }catch (EyeColorException ignored) {}
         }
         return eyeColor;
     }
@@ -161,15 +169,15 @@ public class ConsoleManager {
                 System.out.print("Введите поле hairColor (из списка: red, black, orange, brown): ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new EyeColorException("У элемента отсутствует поле hairColor");
+                    throw new HairColorException("У элемента отсутствует поле hairColor");
                 }
                 try {
                     hairColor = ColorH.valueOf(scanned.toUpperCase(Locale.ROOT));
                 } catch (IllegalArgumentException e) {
-                    throw new EyeColorException("Некорректное значение поля hairColor");
+                    throw new HairColorException("Некорректное значение поля hairColor");
                 }
                 break;
-            }catch (Exception ignored) {}
+            }catch (HairColorException ignored) {}
         }
         return hairColor;
     }
@@ -185,15 +193,15 @@ public class ConsoleManager {
                 System.out.print("Введите поле nationality (из списка: usa, spain, india): ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new EyeColorException("У элемента отсутствует поле nationality");
+                    throw new NationalityException("У элемента отсутствует поле nationality");
                 }
                 try {
                     nationality = Country.valueOf(scanned.toUpperCase(Locale.ROOT));
                 } catch (IllegalArgumentException e) {
-                    throw new EyeColorException("Некорректное значение поля nationality");
+                    throw new NationalityException("Некорректное значение поля nationality");
                 }
                 break;
-            }catch (Exception ignored) {}
+            }catch (NationalityException ignored) {}
         }
         return nationality;
     }
@@ -209,15 +217,15 @@ public class ConsoleManager {
                 System.out.print("Введите поле locationX: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new CoordinatesException("У элемента отсутствует поле locationX");
+                    throw new LocationException("У элемента отсутствует поле locationX");
                 }
                 try {
                     locationX = Integer.parseInt(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле locationX нечисловое значение");
+                    throw new LocationException("В поле locationX нечисловое значение");
                 }
                 break;
-            }catch (Exception ignored) {}
+            }catch (LocationException ignored) {}
         }
         return locationX;
     }
@@ -233,15 +241,15 @@ public class ConsoleManager {
                 System.out.print("Введите поле locationY: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new CoordinatesException("У элемента отсутствует поле locationY");
+                    throw new LocationException("У элемента отсутствует поле locationY");
                 }
                 try {
                     locationY=Double.parseDouble(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле locationY нечисловое значение");
+                    throw new LocationException("В поле locationY нечисловое значение");
                 }
                 break;
-            }catch (Exception ignored) {}
+            }catch (LocationException ignored) {}
         }
         return locationY;
     }
@@ -257,15 +265,15 @@ public class ConsoleManager {
                 System.out.print("Введите поле locationZ: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new CoordinatesException("У элемента отсутствует поле locationZ");
+                    throw new LocationException("У элемента отсутствует поле locationZ");
                 }
                 try {
                     locationZ = Long.parseLong(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("В поле locationZ нечисловое значение");
+                    throw new LocationException("В поле locationZ нечисловое значение");
                 }
                 break;
-            }catch (Exception ignored) {}
+            }catch (LocationException ignored) {}
         }
         return locationZ;
     }
@@ -281,12 +289,12 @@ public class ConsoleManager {
                 System.out.print("Введите поле locationName: ");
                 String scanned = scanner.nextLine();
                 if (scanned.equals("")) {
-                    throw new NameException("У элемента отсутсвует поле locationName");
+                    throw new LocationException("У элемента отсутсвует поле locationName");
                 }
                 locationName = scanned;
                 if (locationName.length()>374) {throw new LocationException("Длина поля locationName не должна превышать 374");}
                 break;
-            }catch (Exception ignored) {}
+            }catch (LocationException ignored) {}
         }
         return locationName;
     }
@@ -307,13 +315,13 @@ public class ConsoleManager {
                 try {
                     id = Integer.parseInt(scanned);
                 } catch (NumberFormatException e) {
-                    throw new CoordinatesException("Введено нечисловое значение");
+                    throw new IdException("Введено нечисловое значение");
                 }
                 if (!Person.getIdArray().contains(id)){
                     throw new IdException("Элемента с таким id нет в коллекции");
                 }
                 break;
-            }catch (Exception e) {
+            }catch (IdException e) {
                 System.out.println("Введите значение id снова: ");
             }
         }
