@@ -64,11 +64,6 @@ public class CommandManager {
                         }
                         if (checkPath.length == 1) {
                             File file = new File(path);
-                            try {
-                                s = new Scanner(file);
-                            } catch (FileNotFoundException e) {
-                                throw new FileException("Файл не существует");
-                            }
                             if (file.isDirectory()) {
                                 throw new FileException("Вы ввели директорию, нужно ввести файл");
                             }
@@ -77,6 +72,11 @@ public class CommandManager {
                             }
                             if (!file.isFile()) {
                                 throw new FileException("Введен не файл");
+                            }
+                            try {
+                                s = new Scanner(file);
+                            } catch (FileNotFoundException e) {
+                                throw new FileException("Файл не существует");
                             }
                             collectionManager.parseFileToCollection(s, path);
                             break;
