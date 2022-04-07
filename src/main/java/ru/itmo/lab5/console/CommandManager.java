@@ -2,6 +2,7 @@ package ru.itmo.lab5.console;
 
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.commands.Command;
+import ru.itmo.lab5.commands.ExcecuteCommand;
 import ru.itmo.lab5.exceptions.FileException;
 
 import java.io.File;
@@ -138,7 +139,7 @@ public class CommandManager {
                     } catch (NoSuchElementException e) {
                         scanner = new Scanner(System.in);
                         consoleManager.changeScanner(scanner);
-                        System.out.println("Вы отменили команду");
+                        System.out.println("Вы вышли из ввода команды команды");
                     }
                 if (!found) {
                     System.out.println("Команда введениа неверно, или такой команды не существует");

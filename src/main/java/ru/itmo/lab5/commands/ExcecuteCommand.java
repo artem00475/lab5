@@ -1,16 +1,19 @@
 package ru.itmo.lab5.commands;
 
+import ru.itmo.lab5.exceptions.FileException;
+import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 import java.io.File;
 import java.util.Deque;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
  * Команда, выполняющая скрипт
  */
 public class ExcecuteCommand implements Command {
-    private final Scanner scanner;
+    private Scanner scanner;
     private final ScriptManager scriptManager;
     private final Deque<String> deque;
 
@@ -44,15 +47,17 @@ public class ExcecuteCommand implements Command {
 
     @Override
     public void execute(Boolean argument) {
+        this.scanner = new Scanner(System.in);
         if (argument){
             System.out.print("Введите полное имя файла: ");
-            try {
                 String path = scanner.nextLine();
-                File file = new File(path);
-                scriptManager.addFile(file);
-            }catch (Exception e) {
-                System.out.printf("Команда %s не выполнена\n", getName());
-            }
+                try {
+                if (path.equals("")) {throw new ScriptException("Ничего не введено");}
+                    File file = new File(path);
+                    scriptManager.addFile(file);
+                }catch (ScriptException e) {
+                    System.out.printf("Команда %s не выполнена\n", getName());
+                }
         }else {
             try {
                 String path = scanner.nextLine();
