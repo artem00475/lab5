@@ -154,9 +154,7 @@ public class FileManager {
                     String locationNameP = (String) personsJSONObject.get(tags[12]);
                     Person newPerson = new Person(idP, nameP, coordinatesXP, coordinatesYP, dateP, heightP, eyeColorP, hairColorP, nationalityP, locationXP, locationYP, locationZP, locationNameP);
                     personQueue.add(newPerson);
-                } catch (Exception e) {
-                    System.out.println("В " + index + " элементе ошибка, он не будет добавлен в коллекцию");
-                }
+                } catch (Exception e) {System.out.println("В " + index + " элементе ошибка, он не будет добавлен в коллекцию");}
             }
         }catch (ParseException e) {
             System.out.println("В файле некорректный формат");

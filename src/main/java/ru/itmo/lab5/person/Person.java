@@ -43,7 +43,7 @@ public class Person {
     public Person(int id, String name, Integer coordinatesX, Integer coordinatesY, Date date, Double height, ColorE eyeColor, ColorH hairColor, Country nationality, Integer locationX, Double locationY, Long locationZ, String locationName ){
         if (idArray.isEmpty()){
            idArray.add(id);
-        } else {
+        }else {
             for (Integer integer : idArray) {
                 if (integer.equals(id)) {
                     throw new IdException("Человек с таким id уже есть в файле.");
@@ -52,16 +52,16 @@ public class Person {
             idArray.add(id);
         }
         if (id<=0){throw new IdException("Id должен быть больше 0");}
-       this.id  = id;
-       if (id >= uniqueID){uniqueID=id+1;}
-       this.name=name;
-       this.coordinates=new Coordinates(coordinatesX,coordinatesY);
-       this.creationDate= date;
-       this.height=height;
-       this.eyeColor=eyeColor;
-       this.hairColor=hairColor;
-       this.nationality=nationality;
-       this.location=new Location(locationX,locationY,locationZ,locationName);
+        this.id  = id;
+        if (id >= uniqueID){uniqueID=id+1;}
+        this.name=name;
+        this.coordinates=new Coordinates(coordinatesX,coordinatesY);
+        this.creationDate= date;
+        this.height=height;
+        this.eyeColor=eyeColor;
+        this.hairColor=hairColor;
+        this.nationality=nationality;
+        this.location=new Location(locationX,locationY,locationZ,locationName);
     }
 
     /**

@@ -20,9 +20,7 @@ public class ScriptManager {
      * Конструтор, задающий параметры объекта
      * @param stringDeque очередь для команд из скриптов
      */
-    public ScriptManager(Deque<String> stringDeque){
-        this.stringDeque=stringDeque;
-    }
+    public ScriptManager(Deque<String> stringDeque){this.stringDeque=stringDeque;}
 
     /**
      * Считывает скрипт, добавляет команды в очередь команд
