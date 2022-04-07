@@ -9,11 +9,12 @@ import ru.itmo.lab5.file.ScriptManager;
 import java.util.*;
 
 public class Main {
+    public static Scanner scanner;
     public static void main( String[] args ) {
-        Scanner scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         Deque<String> scriptQueue = new LinkedList<>();
         CollectionManager collectionManager = new CollectionManager();
-        ConsoleManager consoleManager = new ConsoleManager(scanner);
+        ConsoleManager consoleManager = new ConsoleManager();
         ScriptManager scriptManager = new ScriptManager(scriptQueue);
 
         Command[] commands = {
@@ -31,9 +32,9 @@ public class Main {
                 new CountGreaterThanLocationCommand(consoleManager,collectionManager,scriptManager),
                 new PrintFieldAscendingLocationCommand(collectionManager),
                 new FilterLessThanEyeColorCommand(consoleManager,collectionManager,scriptManager),
-                new ExcecuteCommand(scanner,scriptManager,scriptQueue)
+                new ExcecuteCommand(scriptManager,scriptQueue)
         };
-        CommandManager commandManager = new CommandManager(collectionManager,scanner,commands,scriptQueue,consoleManager);
+        CommandManager commandManager = new CommandManager(collectionManager,commands,scriptQueue);
         commandManager.fileMode();
     }
 }

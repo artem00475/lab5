@@ -1,31 +1,26 @@
 package ru.itmo.lab5.commands;
 
-import ru.itmo.lab5.exceptions.FileException;
+import ru.itmo.lab5.Main;
 import ru.itmo.lab5.exceptions.ScriptException;
 import ru.itmo.lab5.file.ScriptManager;
 
 import java.io.File;
 import java.util.Deque;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 
 /**
  * Команда, выполняющая скрипт
  */
 public class ExcecuteCommand implements Command {
-    private Scanner scanner;
     private final ScriptManager scriptManager;
     private final Deque<String> deque;
 
     /**
      * Конструктор, задающий параметры объекта
-     * @param scanner консоль
      * @param scriptManager менеджер скрипта
      * @see ScriptManager
      * @param deque очередь команд из скрипта
      */
-    public ExcecuteCommand(Scanner scanner, ScriptManager scriptManager, Deque<String> deque){
-        this.scanner=scanner;
+    public ExcecuteCommand(ScriptManager scriptManager, Deque<String> deque){
         this.scriptManager = scriptManager;
         this.deque=deque;
     }
@@ -47,26 +42,24 @@ public class ExcecuteCommand implements Command {
 
     @Override
     public void execute(Boolean argument) {
-        this.scanner = new Scanner(System.in);
         if (argument){
             System.out.print("Введите полное имя файла: ");
-                String path = scanner.nextLine();
-                try {
+            String path = Main.scanner.nextLine();
+            try {
                 if (path.equals("")) {throw new ScriptException("Ничего не введено");}
-                    File file = new File(path);
-                    scriptManager.addFile(file);
-                }catch (ScriptException e) {
-                    System.out.printf("Команда %s не выполнена\n", getName());
-                }
+                File file = new File(path);
+                scriptManager.addFile(file);
+            }catch (ScriptException e) {
+                System.out.printf("Команда %s не выполнена\n", getName());
+            }
         }else {
             try {
-                String path = scanner.nextLine();
+                String path = deque.remove();
                 File file = new File(path);
                 scriptManager.addFile(file);
             }catch (Exception e) {
                 System.out.printf("Команда %s не выполнена\n", getName());
             }
         }
-
     }
 }

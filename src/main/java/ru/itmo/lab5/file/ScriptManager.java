@@ -14,8 +14,7 @@ import java.util.Scanner;
  * Класс, работающий со скриптом из файла
  */
 public class ScriptManager {
-    private File file;
-    private Deque<String> stringDeque;
+    private final Deque<String> stringDeque;
 
     /**
      * Конструтор, задающий параметры объекта
@@ -30,7 +29,6 @@ public class ScriptManager {
      * @param file файл
      */
     public void addFile(File file){
-        this.file = file;
         try (Scanner f = new Scanner(file)) {
             if (stringDeque.isEmpty()) {
                 while (f.hasNextLine()) {
@@ -42,7 +40,6 @@ public class ScriptManager {
                 while (f.hasNextLine()) {
                     deque.add(f.nextLine());
                 }
-                deque.add("stop");
                 while (!deque.isEmpty()){
                     stringDeque.addFirst(deque.removeLast());
                 }

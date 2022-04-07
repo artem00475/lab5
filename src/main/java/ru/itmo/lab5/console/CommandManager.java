@@ -1,8 +1,8 @@
 package ru.itmo.lab5.console;
 
+import ru.itmo.lab5.Main;
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.commands.Command;
-import ru.itmo.lab5.commands.ExcecuteCommand;
 import ru.itmo.lab5.exceptions.FileException;
 
 import java.io.File;
@@ -16,32 +16,25 @@ import java.util.Scanner;
  */
 public class CommandManager {
     private final CollectionManager collectionManager;
-    private Scanner scanner;
     private final Command[] commands;
     private String path;
     private boolean ifEmpty = false;
     private boolean ifConsole = true;
     private final Deque<String> stringDeque;
     private String scannedPath;
-    private final ConsoleManager consoleManager;
     private String com;
 
     /**
      * Конструктор, задающий параметры объекта
      * @param collectionManager менеджер коллекций
      * @see CollectionManager
-     * @param scanner консоль
      * @param commands список всех команд
      * @param stringDeque очередь команд из скрипта
-     * @param consoleManager менеджер консоли
-     * @see ConsoleManager
      */
-    public CommandManager(CollectionManager collectionManager,Scanner scanner,Command[] commands, Deque<String> stringDeque, ConsoleManager consoleManager) {
+    public CommandManager(CollectionManager collectionManager,Command[] commands, Deque<String> stringDeque) {
         this.collectionManager = collectionManager;
-        this.scanner = scanner;
         this.commands = commands;
         this.stringDeque=stringDeque;
-        this.consoleManager=consoleManager;
     }
 
     /**
@@ -53,7 +46,7 @@ public class CommandManager {
         try {
         while (true) {
                 try {
-                    scannedPath = scanner.nextLine();
+                    scannedPath = Main.scanner.nextLine();
                     if (scannedPath.equals("exit")) {
                         ifEmpty = true;
                         break;
@@ -97,8 +90,7 @@ public class CommandManager {
             }
             }catch (NoSuchElementException e) {
                 ifEmpty = true;
-                scanner = new Scanner(System.in);
-                consoleManager.changeScanner(scanner);
+                Main.scanner = new Scanner(System.in);
                 System.out.println("\nВы вышли из ввода");
             }
         if (ifEmpty) {System.out.println("Переменная окружения не введена, сохранить коллекцию будет невозможно.");}
@@ -114,7 +106,7 @@ public class CommandManager {
                 boolean found = false;
                 System.out.print("Введите команду (help - список команд): ");
                 try {
-                    com = scanner.nextLine();
+                    com = Main.scanner.nextLine();
                 }catch (NoSuchElementException e) {
                     System.out.println("\nВы вышли из программы");
                     break;
@@ -129,6 +121,7 @@ public class CommandManager {
                                 if (com.equals("execute_script")) {
                                     command.execute(ifConsole);
                                     scriptMode();
+                                    ifConsole=true;
                                 } else if (!command.hasArgement()) {
                                     command.execute(ifEmpty);
                                 } else {
@@ -137,8 +130,7 @@ public class CommandManager {
                             }
                         }
                     } catch (NoSuchElementException e) {
-                        scanner = new Scanner(System.in);
-                        consoleManager.changeScanner(scanner);
+                        Main.scanner = new Scanner(System.in);
                         System.out.println("Вы вышли из ввода команды команды");
                     }
                 if (!found) {
@@ -152,7 +144,6 @@ public class CommandManager {
      * Работа с командами из скрипта
      */
     public void scriptMode() {
-        boolean noExit = true;
         ifConsole = false;
         if (!stringDeque.isEmpty()) {
             while (true) {
@@ -160,15 +151,11 @@ public class CommandManager {
                 if (com.equals("stop")) {
                     System.out.println("Скрипт выполнен");
                     break;
-                } else if (com.equals("exit")) {
-                    noExit=false;
-                    break;
                 } else {
                     for (Command command : commands) {
                         if (com.equals(command.getName())) {
                             if (com.equals("execute_script")) {
                                 command.execute(ifConsole);
-                                scriptMode();
                             } else if (!command.hasArgement()) {
                                 command.execute(ifEmpty);
                             } else {
@@ -177,7 +164,7 @@ public class CommandManager {
                         }
                     }
                 }
-            }if (noExit) {consoleMode();}
+            }
         }
     }
 }
