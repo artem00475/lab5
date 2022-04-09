@@ -34,7 +34,7 @@ public class Main {
                 new FilterLessThanEyeColorCommand(consoleManager,collectionManager,scriptManager),
                 new ExcecuteCommand(scriptManager,scriptQueue)
         };
-        CommandManager commandManager = new CommandManager(collectionManager,commands,scriptQueue);
+        CommandManager commandManager = new CommandManager(collectionManager,commands,scriptQueue,scriptManager);
         commandManager.fileMode();
     }
 }

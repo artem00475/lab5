@@ -4,9 +4,11 @@ import ru.itmo.lab5.Main;
 import ru.itmo.lab5.collection.CollectionManager;
 import ru.itmo.lab5.commands.Command;
 import ru.itmo.lab5.exceptions.FileException;
+import ru.itmo.lab5.file.ScriptManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -23,6 +25,7 @@ public class CommandManager {
     private final Deque<String> stringDeque;
     private String scannedPath;
     private String com;
+    private ScriptManager scriptManager;
 
     /**
      * Конструктор, задающий параметры объекта
@@ -30,11 +33,14 @@ public class CommandManager {
      * @see CollectionManager
      * @param commands список всех команд
      * @param stringDeque очередь команд из скрипта
+     * @param scriptManager менеджер коллекций
+     * @see ScriptManager
      */
-    public CommandManager(CollectionManager collectionManager,Command[] commands, Deque<String> stringDeque) {
+    public CommandManager(CollectionManager collectionManager, Command[] commands, Deque<String> stringDeque, ScriptManager scriptManager) {
         this.collectionManager = collectionManager;
         this.commands = commands;
         this.stringDeque=stringDeque;
+        this.scriptManager = scriptManager;
     }
 
     /**
@@ -119,6 +125,7 @@ public class CommandManager {
                             if (com.equals(command.getName())) {
                                 found = true;
                                 if (com.equals("execute_script")) {
+                                    scriptManager.createScriptFlesArray();
                                     command.execute(ifConsole);
                                     scriptMode();
                                     ifConsole=true;

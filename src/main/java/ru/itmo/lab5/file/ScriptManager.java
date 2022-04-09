@@ -5,16 +5,14 @@ import ru.itmo.lab5.person.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * Класс, работающий со скриптом из файла
  */
 public class ScriptManager {
     private final Deque<String> stringDeque;
+    private ArrayList<String> scriptFiles;
 
     /**
      * Конструтор, задающий параметры объекта
@@ -28,23 +26,28 @@ public class ScriptManager {
      */
     public void addFile(File file){
         try (Scanner f = new Scanner(file)) {
-            if (stringDeque.isEmpty()) {
-                while (f.hasNextLine()) {
-                    stringDeque.add(f.nextLine());
+            if (!scriptFiles.contains(file.getName())) {
+                scriptFiles.add(file.getName());
+                if (stringDeque.isEmpty()) {
+                    while (f.hasNextLine()) {
+                        stringDeque.add(f.nextLine());
+                    }
+                    stringDeque.add("stop");
+                } else {
+                    Deque<String> deque = new LinkedList<>();
+                    while (f.hasNextLine()) {
+                        deque.add(f.nextLine());
+                    }
+                    while (!deque.isEmpty()) {
+                        stringDeque.addFirst(deque.removeLast());
+                    }
                 }
-                stringDeque.add("stop");
-            }else {
-                Deque<String> deque = new LinkedList<>();
-                while (f.hasNextLine()) {
-                    deque.add(f.nextLine());
-                }
-                while (!deque.isEmpty()){
-                    stringDeque.addFirst(deque.removeLast());
-                }
+            } else {
+                System.out.println("Скрипт из файла "+file.getName()+" уже был выполнен.");
             }
-        } catch (FileNotFoundException e) {
-            throw new ScriptException("Файл не найден");
-        }
+            } catch(FileNotFoundException e){
+                throw new ScriptException("Файл не найден");
+            }
     }
 
     /**
@@ -157,6 +160,9 @@ public class ScriptManager {
             locationName = scanned;
         Person person = new Person(name, coordinatesX, coordinatesY, height, eyeColor, hairColor, nationality, locationX, locationY, locationZ, locationName);
         return person;
+    }
+    public void createScriptFlesArray(){
+        scriptFiles = new ArrayList<>();
     }
 
     /**
