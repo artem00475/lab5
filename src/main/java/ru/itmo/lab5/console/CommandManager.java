@@ -8,7 +8,6 @@ import ru.itmo.lab5.file.ScriptManager;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.NoSuchElementException;
 import java.util.Scanner;

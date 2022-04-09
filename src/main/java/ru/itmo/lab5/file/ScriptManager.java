@@ -161,6 +161,10 @@ public class ScriptManager {
         Person person = new Person(name, coordinatesX, coordinatesY, height, eyeColor, hairColor, nationality, locationX, locationY, locationZ, locationName);
         return person;
     }
+
+    /**
+     * Метод, очиающий список выполненных скриптов
+     */
     public void createScriptFlesArray(){
         scriptFiles = new ArrayList<>();
     }
